@@ -59,7 +59,7 @@ export const SignupSection = (): JSX.Element => {
 							{...control}
 							type={type}
 							placeholder={placeholder}
-							className={`input input-primary w-full text-black ${
+							className={`input input-primary w-full rounded-sm text-black ${
 								meta.errors && meta.errors.length > 0 ? "input-error" : ""
 							}`}
 						/>
@@ -93,7 +93,7 @@ export const SignupSection = (): JSX.Element => {
 				{renderField("password", "Нууц үг давтах", "confirmPassword", form)}
 				<button
 					type="submit"
-					className="btn btn-primary mt-14 w-3/4 text-white text-lg"
+					className="btn rounded-none btn-primary mt-14 w-3/4 text-white text-lg"
 				>
 					Бүртгүүлэх{" "}
 					<span className="ml-12">

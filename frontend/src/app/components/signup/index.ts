@@ -1,2 +1,2 @@
-export * from './SignupSection';
-export * from './TitleSubitle';
+export * from "./SignupSection";
+export * from "./TitleSubitle";
