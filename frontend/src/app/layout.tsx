@@ -3,7 +3,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { Roboto_Condensed } from "next/font/google";
 
-import { Navbar } from "./components";
+import { Navbar } from "./components/Navbar";
 
 import "./globals.css";
 

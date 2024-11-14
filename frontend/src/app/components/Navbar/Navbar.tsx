@@ -1,17 +1,17 @@
-import React  from 'react';
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-export const Navbar = ():JSX.Element => {
+export const Navbar = (): JSX.Element => {
 	return (
-		<nav className="bg-white py-[22px] border-b-2 border-[#AEB8C3]">
+		<nav className="bg-white py-2 border-b-2 border-[#AEB8C3]">
 			<div>
 				<div></div>
 				<div></div>
 
 				<div>
 					{/* Login */}
-					<Link href="/signin">
+					<Link href="/login">
 						<div className="flex flex-col justify-center items-center">
 							<Image
 								src="/login-icon.png"

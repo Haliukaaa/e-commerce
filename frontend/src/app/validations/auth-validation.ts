@@ -6,7 +6,7 @@ export const emailValidation = (): Rule[] => [
 		required: true,
 		message: "Та и-мэйл хаягаа оруулна уу.",
 	},
-	{ type: "email", message: "Зөв и-мэйл хаяг оруулна уу." },
+	{ type: "email", message: "Та зөв форматтай и-мэйл хаяг оруулаарай." },
 ];
 
 export const passwordValidation = (): Rule[] => [

@@ -1,19 +1,18 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { TitleSubtitle } from "./";
+import { TitleSubtitle } from ".";
 import Form from "rc-field-form";
 import type { FormInstance } from "rc-field-form";
 import type { Meta, ValidateErrorEntity } from "rc-field-form/lib/interface";
+import { Alert } from "./";
 import { Field } from "rc-field-form";
 import {
-	emailValidation,
 	passwordValidation,
 	confirmPasswordValidation,
 } from "@/app/validations/auth-validation";
 
 interface SignupValues {
-	email: string;
 	password: string;
 	confirmPassword: string;
 }
@@ -25,19 +24,26 @@ type ChildProps = {
 	onBlur?: () => void;
 };
 
-export const SignupSection = (): JSX.Element => {
+export const ResetPasswordSection = (): JSX.Element => {
 	const [form] = Form.useForm<SignupValues>();
+	const [showSuccess, setShowSuccess] = useState<boolean>(false);
 
 	const onFinish = (values: SignupValues) => {
 		console.log("Success:", values);
+		setShowSuccess(true);
+
+		setTimeout(() => {
+			setShowSuccess(false);
+		}, 3000);
 	};
 
 	const onFinishFailed = (errorInfo: ValidateErrorEntity<SignupValues>) => {
 		console.log("Failed:", errorInfo);
+		setShowSuccess(false);
 	};
 
 	const renderField = (
-		type: "email" | "password" | "text",
+		type: "password" | "text",
 		placeholder: string,
 		name: keyof SignupValues,
 		form: FormInstance<SignupValues>
@@ -46,20 +52,18 @@ export const SignupSection = (): JSX.Element => {
 			<Field
 				name={name}
 				rules={
-					name === "email"
-						? emailValidation()
-						: name === "password"
-							? passwordValidation()
-							: confirmPasswordValidation(form)
+					name === "password"
+						? passwordValidation()
+						: confirmPasswordValidation(form)
 				}
 			>
 				{(control: ChildProps, meta: Meta) => (
-					<div>
+					<div className="w-full sm:w-4/5 md:w-full lg:w-full">
 						<input
 							{...control}
 							type={type}
 							placeholder={placeholder}
-							className={`input input-primary w-full rounded-sm text-black ${
+							className={`input input-primary w-full rounded-md text-black ${
 								meta.errors && meta.errors.length > 0 ? "input-error" : ""
 							}`}
 						/>
@@ -74,11 +78,14 @@ export const SignupSection = (): JSX.Element => {
 
 	return (
 		<div className="w-full md:w-2/3 lg:w-2/3 xl:w-2/4">
+			{showSuccess && (
+				<Alert text="Нууц үг амжилттай шинэчлэгдлээ!"/>
+			)}
 			<TitleSubtitle
 				addClass="text-blue-500"
-				spanText="Бүртгэлтэй"
-				title="Бүртгүүлэх"
-				subtitle="Бүртгүүлэх?"
+				title="Нууц үг сэргээх"
+				subtitle="Та шинэ нууц үгээ оруулна уу."
+				href="/"
 			/>
 
 			<Form
@@ -88,15 +95,19 @@ export const SignupSection = (): JSX.Element => {
 				className="w-full flex flex-col gap-4"
 				initialValues={{ email: "", password: "", confirmPassword: "" }}
 			>
-				{renderField("email", "И-мэйл хаяг", "email", form)}
-				{renderField("password", "Нууц үг", "password", form)}
-				{renderField("password", "Нууц үг давтах", "confirmPassword", form)}
+				{renderField("password", "Шинэ нууц үг", "password", form)}
+				{renderField(
+					"password",
+					"Шинэ нууц үг давтах",
+					"confirmPassword",
+					form
+				)}
 				<button
 					type="submit"
-					className="btn rounded-none btn-primary mt-14 w-3/4 text-white text-lg"
+					className="btn rounded-none group btn-primary mt-14 w-full sm:w-4/5 text-white text-lg"
 				>
-					Бүртгүүлэх{" "}
-					<span className="ml-12">
+					Нууц үг шинэчлэх{" "}
+					<span className="ml-12 transition-transform duration-200 ease-in-out group-hover:translate-x-2">
 						<Image
 							src="/right-arrow.png"
 							alt="бүртгүүлэх"
