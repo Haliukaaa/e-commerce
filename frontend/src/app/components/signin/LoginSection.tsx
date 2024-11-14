@@ -47,7 +47,7 @@ export const LoginSection = (): JSX.Element => {
 				rules={name === "email" ? emailValidation() : passwordValidation()}
 			>
 				{(control: ChildProps, meta: Meta) => (
-					<div className="w-full sm:w-4/5 md:w-full lg:w-full">
+					<div className="w-full sm:w-4/5 lg:w-full">
 						<input
 							{...control}
 							type={type}
@@ -84,16 +84,18 @@ export const LoginSection = (): JSX.Element => {
 				{renderField("email", "И-мэйл хаяг", "email", form)}
 				{renderField("password", "Нууц үг", "password", form)}
 
-				<div className="flex justify-between"><Link href="/signup">
-					<p className="cursor-pointer mb-6 text-blue-500 text-sm">
-						Бүртгүүлэх?
-					</p>
-				</Link>
-                <Link href="/password">
-					<p className="cursor-pointer mb-6 text-blue-500 text-sm">
-						Нууц үг мартсан
-					</p>
-				</Link></div>
+				<div className="flex justify-between w-full sm:w-4/5 lg:w-full">
+					<Link href="/signup">
+						<p className="cursor-pointer mb-6 text-blue-500 text-sm">
+							Бүртгүүлэх?
+						</p>
+					</Link>
+					<Link href="/password">
+						<p className="cursor-pointer mb-6 text-blue-500 text-sm">
+							Нууц үг мартсан
+						</p>
+					</Link>
+				</div>
 				<button
 					type="submit"
 					className="btn group rounded-none btn-primary w-full sm:w-4/5 text-white text-lg"
