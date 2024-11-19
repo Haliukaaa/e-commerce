@@ -16,11 +16,15 @@ export const metadata: Metadata = {
   description: 'Бүх төрлийн дүрэмт хувцас',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body className={`${roboto.className} antialiased`}>
-        <main className="h-full w-full">{children}</main>
+        <main className="h-screen w-screen">{children}</main>
       </body>
     </html>
   );
