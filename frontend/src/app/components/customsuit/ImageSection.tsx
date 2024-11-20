@@ -37,21 +37,19 @@ export const ImageSection: React.FC<ImageSectionProps> = ({
 
   const handleOrderClick = () => {
     if (!selectedStyle || !selectedMaterial) {
-      alert('Please select both style and material before proceeding');
+      alert('Та эхлээд материал болон загвараа сонгоно уу.');
       return;
     }
 
-    // Create a query string with the selected options
-    const queryParams = new URLSearchParams({
-      styleId: selectedStyle.id.toString(),
-      styleName: selectedStyle.name,
-      materialId: selectedMaterial.id.toString(),
-      materialName: selectedMaterial.name,
-      price: selectedMaterial.price,
-    }).toString();
+    // const queryParams = new URLSearchParams({
+    //   styleId: selectedStyle.id.toString(),
+    //   styleName: selectedStyle.name,
+    //   materialId: selectedMaterial.id.toString(),
+    //   materialName: selectedMaterial.name,
+    //   price: selectedMaterial.price,
+    // }).toString();
 
-    // Navigate to order page with parameters
-    router.push(`/order?${queryParams}`);
+    router.push(`/order`);
   };
 
   return (
@@ -59,7 +57,7 @@ export const ImageSection: React.FC<ImageSectionProps> = ({
       <div className="relative w-full h-full flex justify-center items-center p-4">
         <button
           onClick={handleOrderClick}
-          className="py-0 px-4 transition-all duration-300 ease-in-out hover:bg-primary hover:text-white rounded-xl bg-neutral-300 absolute right-4 top-4 z-10"
+          className="py-1 px-5 transition-all duration-300 ease-in-out hover:bg-primary hover:text-white rounded-xl bg-neutral-300 absolute right-4 top-4 z-10"
         >
           Дуусгах
         </button>
