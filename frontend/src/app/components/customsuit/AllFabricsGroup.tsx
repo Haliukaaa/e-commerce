@@ -4,7 +4,7 @@ import { ProductCard } from './ProductCard';
 
 import { Product } from '@/app/types/customsuit';
 
-export const NewArrivalsGroup: React.FC<{
+export const AllFabricsGroup: React.FC<{
   onProductInfoToggle?: (info: Product | null) => void;
 }> = ({ onProductInfoToggle }) => {
   const products: Product[] = [

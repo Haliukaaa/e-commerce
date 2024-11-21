@@ -1,7 +1,9 @@
 'use client';
 import React, { useState } from 'react';
 
-import { FabricGroupCard, NewArrivalsGroup } from './';
+import { AnimatePresence, motion } from 'framer-motion';
+
+import { FabricContent } from './';
 
 import { FabricGroup, Material, Style } from '@/app/types/customsuit';
 
@@ -11,7 +13,6 @@ interface MenuSectionProps {
   selectedStyle: Style | null;
   selectedMaterial: Material | null;
 }
-
 const fabricGroups: FabricGroup[] = [
   {
     id: 1,
@@ -58,56 +59,42 @@ const fabricGroups: FabricGroup[] = [
     ],
   },
 ];
-export const MenuSection: React.FC<MenuSectionProps> = ({
-  onStyleSelect,
-  onMaterialSelect,
-  selectedStyle,
-  selectedMaterial,
-}) => {
+
+const categories = ['Fabric', 'Jacket', 'Trousers', 'Waistcoat'];
+
+const pageVariants = {
+  initial: {
+    opacity: 1,
+    x: '100%',
+  },
+  in: {
+    opacity: 1,
+    x: 0,
+  },
+  out: {
+    opacity: 1,
+    x: '100%',
+  },
+};
+
+const pageTransition = {
+  type: 'tween',
+  ease: 'easeInOut',
+  duration: 0.4,
+};
+
+export const MenuSection: React.FC<MenuSectionProps> = () => {
   const [activeSection, setActiveSection] = useState('Fabric');
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
-  const handleCategoryClick = (category: string) => {
-    setActiveCategory(category);
-  };
-
-  const styles = [
-    { id: 1, name: 'Classic Fit', stylePrefix: 'style1' },
-    { id: 2, name: 'Slim Fit', stylePrefix: 'style2' },
-    { id: 3, name: 'Modern Fit', stylePrefix: 'style3' },
-  ];
-
-  const materialInfo = [
-    { id: 1, name: 'Cotton', price: '$799', fabricNumber: 1 },
-    { id: 2, name: 'Wool', price: '$899', fabricNumber: 2 },
-    { id: 3, name: 'Cashmere', price: '$999', fabricNumber: 3 },
-    { id: 4, name: 'Linen', price: '$849', fabricNumber: 4 },
-    { id: 5, name: 'Silk', price: '$1299', fabricNumber: 5 },
-    { id: 6, name: 'Polyester', price: '$699', fabricNumber: 6 },
-  ];
-
-  const categories = ['Fabric', 'Jacket', 'Trousers', 'Waistcoat'];
-
-  const getCurrentStyles = () => {
-    if (!selectedMaterial) {
-      return styles.map((style) => ({
-        ...style,
-        image: `/${style.stylePrefix}-fab1.png`,
-      }));
-    }
-    return styles.map((style) => ({
-      ...style,
-      image: `/${style.stylePrefix}-fab${selectedMaterial.fabricNumber}.png`,
-    }));
-  };
-
   return (
-    <div className="bg-white w-full p-6 h-full overflow-y-auto">
+    <div className="bg-white w-full p-2 h-full overflow-y-auto overflow-hidden">
+      {/* Category Navigation Buttons */}
       <div className="flex mb-4 justify-center">
-        {categories.map((category, index) => (
+        {categories.map((category) => (
           <button
-            key={index}
-            className={`px-4 py-2 rounded-full ${
+            key={category}
+            className={`lg:px-[14px] lg:pt-[7px] lg:pb-[11px] xl:px-4 py-2 rounded-full ${
               activeSection === category
                 ? 'bg-gray-100 text-gray-600 font-medium'
                 : 'text-gray-700'
@@ -119,59 +106,31 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
         ))}
       </div>
 
-      {activeSection === 'Fabric' && (
-        <>
-          {!activeCategory ? (
-            <div className="space-y-4">
-              {fabricGroups.map((group, index) => (
-                <FabricGroupCard
-                  key={group.id}
-                  group={group}
-                  index={index}
-                  activeCategory={activeCategory}
-                  onCategoryClick={handleCategoryClick}
-                />
-              ))}
-            </div>
-          ) : (
-            <div>
-              {activeCategory === 'New Arrivals' && <NewArrivalsGroup />}
-              {activeCategory === 'Best Sellers' && <BestSellersGroup />}
-              {activeCategory === 'Business' && (
-                <BusinessComponent /> // Create this component
-              )}
-              {activeCategory === 'All Fabrics' && (
-                <AllFabricsComponent /> // Create this component
-              )}
-            </div>
+      {/* Animated Content Container */}
+      <AnimatePresence>
+        <motion.div
+          key={activeSection}
+          initial="initial"
+          animate="in"
+          exit="out"
+          variants={pageVariants}
+          transition={pageTransition}
+          className="relative"
+        >
+          {/* Conditional Rendering with Animations */}
+          {activeSection === 'Fabric' && (
+            <FabricContent
+              fabricGroups={fabricGroups}
+              activeCategory={activeCategory}
+              setActiveCategory={setActiveCategory}
+            />
           )}
-        </>
-      )}
 
-      {activeSection === 'style' && (
-        <div className="flex lg:flex-col justify-center gap-3">
-          {getCurrentStyles().map((style) => (
-            <div
-              key={style.id}
-              onClick={() => onStyleSelect(style)}
-              className={`cursor-pointer lg:flex items-center gap-2 rounded-md p-2 ${
-                selectedStyle?.id === style.id ? 'border-2 border-gray-300' : ''
-              }`}
-            >
-              <div className="w-32 h-32 rounded-md overflow-hidden">
-                <img
-                  src={style.image}
-                  alt={style.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <p className="text-center font-medium text-blue-600 lg:ml-4">
-                {style.name}
-              </p>
-            </div>
-          ))}
-        </div>
-      )}
+          {/* {activeSection === 'Jacket' && <JacketContent />} */}
+
+          {/* Add similar sections for Trousers and Waistcoat */}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 };

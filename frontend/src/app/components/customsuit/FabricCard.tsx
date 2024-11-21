@@ -5,22 +5,21 @@ import { ChevronRight } from 'lucide-react';
 
 import { FabricGroup } from '@/app/types/customsuit';
 
-export const FabricGroupCard = ({
+export const FabricCard = ({
   group,
   index,
-  activeCategory,
   onCategoryClick,
 }: {
   group: FabricGroup;
   index: number;
-  activeCategory: string | null;
   onCategoryClick: (category: string) => void;
 }) => {
+  const isDefaultSelected = index === 0;
+
   return (
     <div
-      className={`flex items-center rounded-lg hover:text-gray-400 cursor-pointer ${
-        index === 0 ? 'outline outline-2 outline-gray-400 outline-offset-4' : ''
-      } ${activeCategory === group.name ? 'outline outline-4 outline-gray-400 outline-offset-4' : ''}`}
+      className={`flex items-center rounded-lg p-1 hover:text-gray-400 cursor-pointer ${isDefaultSelected ? 'border-2 border-opacity-100 border-gray-500' : 'border-gray-400 border-2 border-opacity-0'} 
+        `}
       onClick={() => onCategoryClick(group.name)}
     >
       <div className="flex gap-1 relative lg:gap-0 rounded-md overflow-hidden flex-wrap w-28 h-28">

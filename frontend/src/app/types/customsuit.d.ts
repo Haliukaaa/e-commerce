@@ -19,3 +19,13 @@ export interface FabricGroup {
   itemCount: number;
   images: string[];
 }
+
+export interface Product {
+  id: string;
+  name: string;
+  price: string;
+  image: string;
+  description?: string;
+  composition?: string;
+  care?: string;
+}
