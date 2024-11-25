@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 import { FabricContent } from './';
 
-import { fabricGroups } from '@/app/mockdata/suit-mockdata';
+import { fabricGroups } from '@/app/utils/mockdata/suit-mockdata';
 
 const categories = ['Fabric', 'Jacket', 'Trousers', 'Waistcoat'];
 

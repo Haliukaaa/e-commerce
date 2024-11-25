@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import { ProductCard } from './ProductCard';
 
-import { products } from '@/app/mockdata/suit-mockdata';
-import { Product } from '@/app/types/customsuit';
+import { products } from '@/app/utils/mockdata/suit-mockdata';
+import { Product } from '@/app/utils/types/customsuit';
 
 export const BusinessGroup: React.FC<{
   onProductInfoToggle?: (info: Product | null) => void;

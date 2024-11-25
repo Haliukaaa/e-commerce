@@ -3,7 +3,7 @@ import React from 'react';
 
 import { ChevronRight } from 'lucide-react';
 
-import { FabricGroup } from '@/app/types/customsuit';
+import { FabricGroup } from '@/app/utils/types/customsuit';
 
 export const FabricCard = ({
   group,

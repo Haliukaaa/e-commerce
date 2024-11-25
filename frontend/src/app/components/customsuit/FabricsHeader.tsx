@@ -9,12 +9,14 @@ interface HeaderProps {
   activeCategory: string | null;
   scrollContainerRef: React.RefObject<HTMLDivElement>;
   onHeaderVisibilityChange: (hidden: boolean) => void;
+  handleConfirm: () => void;
 }
 
 export const FabricsHeader: React.FC<HeaderProps> = ({
   activeCategory,
   scrollContainerRef,
   onHeaderVisibilityChange,
+  handleConfirm,
 }) => {
   const [hidden, setHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -57,9 +59,11 @@ export const FabricsHeader: React.FC<HeaderProps> = ({
       transition={{ type: 'tween', duration: 0.4 }}
     >
       <div className="flex relative justify-center lg:justify-between pt-2 lg:py-4 px-5">
-        <div className="absolute left-3 block lg:hidden border border-gray-400 rounded-full p-1">
-          <ChevronLeft className="w-5 h-5 stroke-1" />
-        </div>
+        <button onClick={handleConfirm}>
+          <div className="absolute left-3 block lg:hidden border border-gray-400 rounded-full p-1">
+            <ChevronLeft className="w-5 h-5 stroke-1" />
+          </div>
+        </button>
         <Search className="hidden lg:block" />
         <div className="font-bold text-base lg:text-lg">{activeCategory}</div>
         <ListFilter className="hidden lg:block" />

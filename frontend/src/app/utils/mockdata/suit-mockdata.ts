@@ -79,7 +79,7 @@ export const products: Product[] = [
     care: 'Gentle dry clean, store on wide hangers',
   },
   {
-    id: '1661',
+    id: '1669',
     name: 'Light Grey Pure Tropical Wool',
     price: '673',
     image:

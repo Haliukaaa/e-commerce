@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { FabricsPanel } from './FabricsPanel';
 import { FabricCard } from './';
 
-import { FabricGroup, Product } from '@/app/types/customsuit';
+import { FabricGroup, Product } from '@/app/utils/types/customsuit';
 
 interface FabricContentProps {
   fabricGroups: FabricGroup[];
@@ -110,6 +110,7 @@ export const FabricContent: React.FC<FabricContentProps> = ({
             <FabricsPanel
               handleProductInfoToggle={handleProductInfoToggle}
               activeCategory={activeCategory}
+              setActiveCategory={setActiveCategory}
             />
           </motion.div>
         )}

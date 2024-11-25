@@ -11,26 +11,50 @@ import {
   NewArrivalsGroup,
 } from './';
 
-import { Product } from '@/app/types/customsuit';
+import { useFabric } from '@/app/utils/context/fabricContext';
+import { Product } from '@/app/utils/types/customsuit';
 
 interface FabricsPanelProps {
   activeCategory: string | null;
   handleProductInfoToggle: (product: Product | null) => void;
+  setActiveCategory: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export const FabricsPanel: React.FC<FabricsPanelProps> = ({
   activeCategory,
   handleProductInfoToggle,
+  setActiveCategory,
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [headerHidden, setHeaderHidden] = useState(false);
-  const [selectedFabric, setSelectedFabric] = useState<{
+  const [selectedLocalFabric, setSelectedLocalFabric] = useState<{
     name: string;
     price: string;
+    id: string;
+    image: string;
   } | null>(null);
 
-  const handleFabricSelect = (name: string, price: string) => {
-    setSelectedFabric({ name, price });
+  const { setSelectedFabric } = useFabric();
+
+  const handleConfirm = () => {
+    if (selectedLocalFabric) {
+      setSelectedFabric({
+        name: selectedLocalFabric.name,
+        price: selectedLocalFabric.price,
+        id: selectedLocalFabric.id,
+        image: selectedLocalFabric.image,
+      });
+      setActiveCategory(null);
+    }
+  };
+
+  const handleFabricSelect = (
+    name: string,
+    price: string,
+    id: string,
+    image: string,
+  ) => {
+    setSelectedLocalFabric({ name, price, id, image });
   };
 
   return (
@@ -40,6 +64,7 @@ export const FabricsPanel: React.FC<FabricsPanelProps> = ({
           activeCategory={activeCategory}
           scrollContainerRef={scrollContainerRef}
           onHeaderVisibilityChange={setHeaderHidden}
+          handleConfirm={handleConfirm}
         />
       </AnimatePresence>
 
@@ -80,10 +105,12 @@ export const FabricsPanel: React.FC<FabricsPanelProps> = ({
       <div className="sticky bottom-0 w-full bg-white lg:border-t">
         <div className="flex justify-between lg:hidden items-center px-3 pb-3">
           <Search className="w-5 h-5 stroke-1" />
-          {selectedFabric ? (
+          {selectedLocalFabric ? (
             <div className="text-center">
-              <div className="font-medium text-xs">{selectedFabric.name}</div>
-              <div className="text-xs">${selectedFabric.price}</div>
+              <div className="font-medium text-xs">
+                {selectedLocalFabric.name}
+              </div>
+              <div className="text-xs">${selectedLocalFabric.price}</div>
             </div>
           ) : (
             <div>
@@ -98,7 +125,10 @@ export const FabricsPanel: React.FC<FabricsPanelProps> = ({
 
         {/* Confirm Button */}
         <div className="p-4 hidden lg:block">
-          <button className="flex items-center w-full justify-center rounded-[80px] bg-black text-white pt-[10px] pb-3">
+          <button
+            onClick={handleConfirm}
+            className="flex items-center w-full justify-center rounded-[80px] bg-black text-white pt-[10px] pb-3"
+          >
             <div className="flex items-center gap-2">
               <Check />
               <span>Confirm</span>

@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 
 import { ProductCard } from './ProductCard';
 
-import { products } from '@/app/mockdata/suit-mockdata';
-import { Product } from '@/app/types/customsuit';
+import { products } from '@/app/utils/mockdata/suit-mockdata';
+import { Product } from '@/app/utils/types/customsuit';
 
 export const AllFabricsGroup: React.FC<{
   onProductInfoToggle?: (info: Product | null) => void;
-  onFabricSelect?: (name: string, price: string) => void;
+  onFabricSelect?: (
+    name: string,
+    price: string,
+    id: string,
+    image: string,
+  ) => void;
 }> = ({ onProductInfoToggle, onFabricSelect }) => {
   const [activeFabric, setActiveFabric] = useState<string | null>(null);
 
@@ -15,7 +20,12 @@ export const AllFabricsGroup: React.FC<{
     setActiveFabric(fabric);
     const selectedProduct = products.find((product) => product.name === fabric);
     if (selectedProduct && onFabricSelect) {
-      onFabricSelect(selectedProduct.name, selectedProduct.price);
+      onFabricSelect(
+        selectedProduct.name,
+        selectedProduct.price,
+        selectedProduct.id,
+        selectedProduct.image,
+      );
     }
   };
 
