@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { Search, ListFilter } from 'lucide-react';
 
-import {
-  AllFabricsGroup,
-  BestSellersGroup,
-  BusinessGroup,
-  FabricCard,
-  NewArrivalsGroup,
-} from './';
+import { FabricsPanel } from './FabricsPanel';
+import { FabricCard } from './';
 
 import { FabricGroup, Product } from '@/app/types/customsuit';
+
+interface FabricContentProps {
+  fabricGroups: FabricGroup[];
+  activeCategory: string | null;
+  setActiveCategory: React.Dispatch<React.SetStateAction<string | null>>;
+}
 
 const pageTransition = {
   type: 'tween',
@@ -19,11 +19,41 @@ const pageTransition = {
   duration: 0.4,
 };
 
-interface FabricContentProps {
-  fabricGroups: FabricGroup[];
-  activeCategory: string | null;
-  setActiveCategory: React.Dispatch<React.SetStateAction<string | null>>;
-}
+const mobileVariants = {
+  initial: {
+    opacity: 0,
+    y: '100vh',
+    x: 0,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    x: 0,
+  },
+  exit: {
+    opacity: 0,
+    y: '100vh',
+    x: 0,
+  },
+};
+
+const desktopVariants = {
+  initial: {
+    opacity: 0,
+    x: '100%',
+    y: 0,
+  },
+  animate: {
+    opacity: 1,
+    x: 0,
+    y: 0,
+  },
+  exit: {
+    opacity: 0,
+    x: '100%',
+    y: 0,
+  },
+};
 
 export const FabricContent: React.FC<FabricContentProps> = ({
   fabricGroups,
@@ -33,6 +63,15 @@ export const FabricContent: React.FC<FabricContentProps> = ({
   const [activeProductInfo, setActiveProductInfo] = useState<Product | null>(
     null,
   );
+
+  const getVariants = () => {
+    if (typeof window !== 'undefined') {
+      return window.matchMedia('(min-width: 1024px)').matches
+        ? desktopVariants
+        : mobileVariants;
+    }
+    return desktopVariants;
+  };
 
   const handleCategoryClick = (category: string) => {
     setActiveCategory(category);
@@ -48,11 +87,9 @@ export const FabricContent: React.FC<FabricContentProps> = ({
         {!activeCategory ? (
           <motion.div
             key="fabric-groups"
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
+            {...getVariants()}
             transition={pageTransition}
-            className="space-y-1 overflow-y-auto"
+            className="space-y-1 flex lg:flex-col overflow-y-auto"
           >
             {fabricGroups.map((group, index) => (
               <FabricCard
@@ -64,55 +101,16 @@ export const FabricContent: React.FC<FabricContentProps> = ({
             ))}
           </motion.div>
         ) : (
-          //   <motion.div
-          //     key="category-detail"
-          //     initial={{ opacity: 0, x: '100%' }}
-          //     animate={{ opacity: 1, x: 0 }}
-          //     exit={{ opacity: 0, x: '-100%' }}
-          //     transition={pageTransition}
-          //     className="relative"
-          //   >
-          //     {activeCategory === 'All Fabrics' && (
-          //       <AllFabricsGroup onProductInfoToggle={handleProductInfoToggle} />
-          //     )}
-          //     {activeCategory === 'New Arrivals' && (
-          //       <NewArrivalsGroup onProductInfoToggle={handleProductInfoToggle} />
-          //     )}
-          //     {activeCategory === 'Best Sellers' && (
-          //       <BestSellersGroup onProductInfoToggle={handleProductInfoToggle} />
-          //     )}
-          //     {activeCategory === 'Business' && (
-          //       <BusinessGroup onProductInfoToggle={handleProductInfoToggle} />
-          //     )}
-          //   </motion.div>
           <motion.div
             key="product-info"
-            initial={{ opacity: 1, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 1, x: '100%' }}
+            {...getVariants()}
             transition={pageTransition}
-            className="fixed top-11 lg:top-[50px] right-0 bottom-0 w-full lg:w-[30%] bg-white z-20 overflow-y-auto"
+            className="fixed h-[180px] lg:h-auto bottom-0 lg:top-[49px] right-0 w-full lg:w-[30%] bg-white z-20 overflow-hidden"
           >
-            <div className="flex lg:h-[42px] mb-4 justify-between pt-7 pb-[17px] px-5">
-              <div className="flex justify-center items-center">
-                <Search />
-              </div>
-              <div className="flex justify-center items-center">
-                All Fabrics
-              </div>
-              <div className="flex justify-center items-center">
-                <ListFilter />
-              </div>
-            </div>
-            <div className="p-2">
-              <div className="relative">
-                {activeCategory === 'All Fabrics' && (
-                  <AllFabricsGroup
-                    onProductInfoToggle={handleProductInfoToggle}
-                  />
-                )}
-              </div>
-            </div>
+            <FabricsPanel
+              handleProductInfoToggle={handleProductInfoToggle}
+              activeCategory={activeCategory}
+            />
           </motion.div>
         )}
       </AnimatePresence>
@@ -122,11 +120,9 @@ export const FabricContent: React.FC<FabricContentProps> = ({
         {activeProductInfo && (
           <motion.div
             key="product-info"
-            initial={{ opacity: 1, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 1, x: '100%' }}
+            {...getVariants()}
             transition={pageTransition}
-            className="fixed top-11 lg:top-[50px] right-0 bottom-0 w-full lg:w-[33%] bg-white z-20 overflow-y-auto"
+            className="fixed top-11 lg:top-[50px] right-0 bottom-0 w-full lg:w-[30%] bg-white z-20 overflow-y-auto"
           >
             <div>
               <div className="relative">

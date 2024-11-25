@@ -18,28 +18,35 @@ export const FabricCard = ({
 
   return (
     <div
-      className={`flex items-center rounded-lg p-1 hover:text-gray-400 cursor-pointer ${isDefaultSelected ? 'border-2 border-opacity-100 border-gray-500' : 'border-gray-400 border-2 border-opacity-0'} 
+      className={`flex flex-col lg:flex-row items-center rounded-lg hover:text-gray-400 cursor-pointer ${isDefaultSelected ? 'lg:border-2 lg:border-opacity-100 lg:border-gray-500' : 'border-gray-400 border lg:border-2 border-opacity-0'} 
         `}
       onClick={() => onCategoryClick(group.name)}
     >
-      <div className="flex gap-1 relative lg:gap-0 rounded-md overflow-hidden flex-wrap w-28 h-28">
-        <div className="absolute right-2 px-2 py-[3px] bg-opacity-30 text-xs rounded-[800px] z-20 bg-inherit backdrop-blur top-2 text-white">
+      <div
+        className={`flex relative rounded-[4px] gap-0 lg:border-opacity-0 ${isDefaultSelected ? 'border lg:border-2 border-opacity-100 border-gray-500' : 'border-gray-400 border lg:border-2 border-opacity-0'} p-1 lg:rounded-md overflow-hidden w-24 h-24 lg:w-32 lg:h-32`}
+      >
+        <div className="absolute right-2 px-2 py-[3px] bg-opacity-30 text-xs lg:rounded-[800px] z-20 bg-inherit backdrop-blur top-2 text-white">
           {group.itemCount}
         </div>
-        {group.images.map((image, imageIndex) => (
-          <div key={imageIndex} className="w-14 h-14">
-            <img
-              src={image}
-              alt={`${group.name} fabric ${imageIndex + 1}`}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        ))}
+        <div className="rounded-[4px] overflow-hidden flex flex-wrap">
+          {group.images.map((image, imageIndex) => (
+            <div
+              key={imageIndex}
+              className="w-[43px] lg:w-[58px] lg:h-[58px] h-[43px]"
+            >
+              <img
+                src={image}
+                alt={`${group.name} fabric ${imageIndex + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
       </div>
       <div className="ml-4 flex-grow">
-        <div className="text-base font-medium">{group.name}</div>
+        <div className="text-sm lg:text-base font-medium">{group.name}</div>
       </div>
-      <ChevronRight className="text-black stroke-1" size={18} />
+      <ChevronRight className="text-black hidden stroke-1" size={18} />
     </div>
   );
 };

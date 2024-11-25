@@ -19,23 +19,22 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col h-full lg:flex-row lg:h-screen pt-11 lg:pt-[50px]">
+    <div className="grid grid-rows-[1fr_auto] grid-cols-1 lg:flex lg:flex-row h-screen">
       {/* Left Section: Image */}
-      <div className="w-full flex-grow lg:w-[67%] xl:w-[70%] h-64 lg:h-full bg-gray-100">
-        <ImageSection
-          selectedStyle={selectedStyle}
-          selectedMaterial={selectedMaterial}
-        />
+      <div className="flex-1 lg:flex-1 lg:w-[70%] pt-11 lg:pt-[50px]">
+        <div className="h-full bg-gray-100 transition-all duration-300">
+          <ImageSection
+            selectedStyle={selectedStyle}
+            selectedMaterial={selectedMaterial}
+          />
+        </div>
       </div>
 
       {/* Right Section: Menu */}
-      <div className="w-full flex-shrink lg:w-[33%] xl:w-[30%] bg-white h-auto lg:h-full overflow-y-auto">
-        <MenuSection
-          selectedStyle={selectedStyle}
-          selectedMaterial={selectedMaterial}
-          onStyleSelect={handleStyleSelect}
-          onMaterialSelect={handleMaterialSelect}
-        />
+      <div className="lg:w-[30%] h-[180px] bg-white lg:pt-[50px] lg:min-h-0 lg:h-full">
+        <div className="h-full overflow-hidden">
+          <MenuSection />
+        </div>
       </div>
     </div>
   );
