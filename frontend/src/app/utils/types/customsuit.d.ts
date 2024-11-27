@@ -27,5 +27,6 @@ export interface Product {
   image: string;
   description?: string;
   composition?: string;
+  category?: string[];
   care?: string;
 }

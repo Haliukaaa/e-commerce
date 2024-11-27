@@ -16,10 +16,6 @@
   border-radius: 4px;
 }
 
-body {
-  overflow: hidden;
-}
-
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;

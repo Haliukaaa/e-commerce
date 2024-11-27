@@ -21,7 +21,7 @@ export const ProductCard = ({
 }: ProductCardProps) => {
   return (
     <div
-      className={`bg-white w-fit border p-[2px] border-2 lg:p-1 cursor-pointer border-opacity-0 
+      className={`bg-white w-fit p-[2px] border-2 lg:p-1 cursor-pointer border-opacity-0 
         ${activeFabric === null && index === 0 ? 'border-2 border-opacity-100 border-gray-500' : ''} 
         transition-all duration-150 ease-linear border-gray-300 rounded-md 
         ${activeFabric === name ? ' border-2 border-opacity-100 ring-4 ring-gray-300 border-gray-500' : ''}

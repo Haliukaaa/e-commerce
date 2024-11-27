@@ -59,8 +59,8 @@ export const FabricsHeader: React.FC<HeaderProps> = ({
       transition={{ type: 'tween', duration: 0.4 }}
     >
       <div className="flex relative justify-center lg:justify-between pt-2 lg:py-4 px-5">
-        <button onClick={handleConfirm}>
-          <div className="absolute left-3 top-2 block lg:hidden border border-gray-400 rounded-full p-1">
+        <button className="block lg:hidden" onClick={handleConfirm}>
+          <div className="absolute left-3 top-2 border border-gray-400 rounded-full p-1">
             <ChevronLeft className="w-5 h-5 stroke-1" />
           </div>
         </button>

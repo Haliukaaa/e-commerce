@@ -3,13 +3,7 @@ import React, { useRef, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Check, ListFilter, Search } from 'lucide-react';
 
-import {
-  AllFabricsGroup,
-  BestSellersGroup,
-  BusinessGroup,
-  FabricsHeader,
-  NewArrivalsGroup,
-} from './';
+import { FabricsGroup, FabricsHeader } from './';
 
 import { useFabric } from '@/app/utils/context/fabricContext';
 import { Product } from '@/app/utils/types/customsuit';
@@ -57,6 +51,17 @@ export const FabricsPanel: React.FC<FabricsPanelProps> = ({
     setSelectedLocalFabric({ name, price, id, image });
   };
 
+  const categoryComponents = {
+    'All Fabrics': FabricsGroup,
+    'Best Sellers': FabricsGroup,
+    Business: FabricsGroup,
+    'New Arrivals': FabricsGroup,
+  };
+
+  const CategoryComponent =
+    activeCategory &&
+    categoryComponents[activeCategory as keyof typeof categoryComponents];
+
   return (
     <div className="flex flex-col h-full">
       <AnimatePresence>
@@ -75,26 +80,9 @@ export const FabricsPanel: React.FC<FabricsPanelProps> = ({
           headerHidden ? 'pt-0' : 'pt-[44px] md:pt-[55px] lg:pt-[65px]'
         }`}
       >
-        {activeCategory === 'All Fabrics' && (
-          <AllFabricsGroup
-            onProductInfoToggle={handleProductInfoToggle}
-            onFabricSelect={handleFabricSelect}
-          />
-        )}
-        {activeCategory === 'Best Sellers' && (
-          <BestSellersGroup
-            onProductInfoToggle={handleProductInfoToggle}
-            onFabricSelect={handleFabricSelect}
-          />
-        )}
-        {activeCategory === 'Business' && (
-          <BusinessGroup
-            onProductInfoToggle={handleProductInfoToggle}
-            onFabricSelect={handleFabricSelect}
-          />
-        )}
-        {activeCategory === 'New Arrivals' && (
-          <NewArrivalsGroup
+        {CategoryComponent && (
+          <CategoryComponent
+            category={activeCategory}
             onProductInfoToggle={handleProductInfoToggle}
             onFabricSelect={handleFabricSelect}
           />
