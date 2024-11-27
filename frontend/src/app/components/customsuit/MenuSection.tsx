@@ -35,7 +35,7 @@ export const MenuSection: React.FC = () => {
         <div className="h-full w-full absolute">
           {activeSection === 'Fabric' && (
             <div className="h-full overflow-y-auto overflow-hidden">
-              <div className="p-2 lg:p-4">
+              <div className="p-2 lg:p-4 overflow-hidden">
                 <FabricContent
                   fabricGroups={fabricGroups}
                   activeCategory={activeCategory}

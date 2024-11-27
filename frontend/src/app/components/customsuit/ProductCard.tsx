@@ -21,17 +21,17 @@ export const ProductCard = ({
 }: ProductCardProps) => {
   return (
     <div
-      className={`bg-white w:fit border p-[2px] lg:border-2 lg:p-1 cursor-pointer border-opacity-0 
+      className={`bg-white w-fit border p-[2px] border-2 lg:p-1 cursor-pointer border-opacity-0 
         ${activeFabric === null && index === 0 ? 'border-2 border-opacity-100 border-gray-500' : ''} 
         transition-all duration-150 ease-linear border-gray-300 rounded-md 
-        ${activeFabric === name ? 'border-2 border-opacity-100 outline outline-4 outline-gray-300 border-gray-500' : ''}
+        ${activeFabric === name ? ' border-2 border-opacity-100 ring-4 ring-gray-300 border-gray-500' : ''}
         lg:flex-row lg:w-full
       `}
       onClick={() => onFabricClick(name!)}
     >
       <div className="flex flex-col lg:flex-row w-full">
         <div className="relative">
-          <div className="lg:w-28 h-[72px] w-[72px] lg:h-28 overflow-hidden rounded-md">
+          <div className="md:w-28 h-[72px] w-[72px] md:h-28 overflow-hidden rounded-md">
             <img
               src={image}
               alt={name}

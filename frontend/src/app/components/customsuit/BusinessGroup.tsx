@@ -7,7 +7,12 @@ import { Product } from '@/app/utils/types/customsuit';
 
 export const BusinessGroup: React.FC<{
   onProductInfoToggle?: (info: Product | null) => void;
-  onFabricSelect?: (name: string, price: string) => void;
+  onFabricSelect?: (
+    name: string,
+    price: string,
+    id: string,
+    image: string,
+  ) => void;
 }> = ({ onProductInfoToggle, onFabricSelect }) => {
   const [activeFabric, setActiveFabric] = useState<string | null>(null);
 
@@ -15,7 +20,12 @@ export const BusinessGroup: React.FC<{
     setActiveFabric(fabric);
     const selectedProduct = products.find((product) => product.name === fabric);
     if (selectedProduct && onFabricSelect) {
-      onFabricSelect(selectedProduct.name, selectedProduct.price);
+      onFabricSelect(
+        selectedProduct.name,
+        selectedProduct.price,
+        selectedProduct.id,
+        selectedProduct.image,
+      );
     }
   };
 

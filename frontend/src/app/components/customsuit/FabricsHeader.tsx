@@ -60,12 +60,12 @@ export const FabricsHeader: React.FC<HeaderProps> = ({
     >
       <div className="flex relative justify-center lg:justify-between pt-2 lg:py-4 px-5">
         <button onClick={handleConfirm}>
-          <div className="absolute left-3 block lg:hidden border border-gray-400 rounded-full p-1">
+          <div className="absolute left-3 top-2 block lg:hidden border border-gray-400 rounded-full p-1">
             <ChevronLeft className="w-5 h-5 stroke-1" />
           </div>
         </button>
         <Search className="hidden lg:block" />
-        <div className="font-bold text-base lg:text-lg">{activeCategory}</div>
+        <div className="font-bold text-base md:text-lg">{activeCategory}</div>
         <ListFilter className="hidden lg:block" />
       </div>
     </motion.div>

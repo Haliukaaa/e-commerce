@@ -35,7 +35,7 @@ export const AllFabricsGroup: React.FC<{
 
   return (
     <div className="relative w-full">
-      <div className="flex flex-row gap-1 lg:flex-col lg:gap-4">
+      <div className="flex hide-scrollbar flex-row gap-1 md:gap-3 lg:flex-col lg:gap-4">
         {products.map((product, index) => (
           <ProductCard
             key={product.id}

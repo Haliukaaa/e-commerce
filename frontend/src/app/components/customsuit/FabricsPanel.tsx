@@ -72,7 +72,7 @@ export const FabricsPanel: React.FC<FabricsPanelProps> = ({
       <div
         ref={scrollContainerRef}
         className={`flex-grow overflow-y-auto px-1 lg:px-2 lg:pb-2 transition-transform duration-300 ease-linear ${
-          headerHidden ? 'pt-0' : 'pt-12 lg:pt-[65px]'
+          headerHidden ? 'pt-0' : 'pt-[44px] md:pt-[55px] lg:pt-[65px]'
         }`}
       >
         {activeCategory === 'All Fabrics' && (
@@ -107,10 +107,12 @@ export const FabricsPanel: React.FC<FabricsPanelProps> = ({
           <Search className="w-5 h-5 stroke-1" />
           {selectedLocalFabric ? (
             <div className="text-center">
-              <div className="font-medium text-xs">
+              <div className="font-medium text-xs md:text-base">
                 {selectedLocalFabric.name}
               </div>
-              <div className="text-xs">${selectedLocalFabric.price}</div>
+              <div className="text-xs md:text-sm">
+                ${selectedLocalFabric.price}
+              </div>
             </div>
           ) : (
             <div>
