@@ -1,7 +1,11 @@
 import React from 'react';
 
 interface ProductCardProps {
-  image?: string;
+  images: {
+    fabric: { layer: string; url: string };
+    jacket: { layer: string; url: string }[];
+    trousers: { layer: string; url: string }[];
+  };
   name?: string;
   price?: string;
   index?: number;
@@ -11,7 +15,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({
-  image,
+  images,
   name,
   price,
   activeFabric,
@@ -33,7 +37,7 @@ export const ProductCard = ({
         <div className="relative">
           <div className="md:w-28 h-[72px] w-[72px] md:h-28 overflow-hidden rounded-md">
             <img
-              src={image}
+              src={images.fabric.url}
               alt={name}
               className="w-full h-full object-cover"
               loading="lazy"

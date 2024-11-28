@@ -24,7 +24,11 @@ export interface Product {
   id: string;
   name: string;
   price: string;
-  image: string;
+  images: {
+    fabric: { layer: string; url: string };
+    jacket: { layer: string; url: string }[];
+    trousers: { layer: string; url: string }[];
+  };
   description?: string;
   composition?: string;
   category?: string[];

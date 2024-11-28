@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { ProductCard } from './ProductCard';
 
+import { useFabric } from '@/app/utils/context/fabricContext';
 import { products } from '@/app/utils/mockdata/suit-mockdata';
 import { Product } from '@/app/utils/types/customsuit';
 
@@ -12,7 +13,11 @@ interface FabricsGroupProps {
     name: string,
     price: string,
     id: string,
-    image: string,
+    images: {
+      fabric: { layer: string; url: string };
+      jacket: { layer: string; url: string }[];
+      trousers: { layer: string; url: string }[];
+    },
   ) => void;
 }
 
@@ -21,7 +26,9 @@ export const FabricsGroup: React.FC<FabricsGroupProps> = ({
   onProductInfoToggle,
   onFabricSelect,
 }) => {
+  const { selectedFabric } = useFabric();
   const [activeFabric, setActiveFabric] = useState<string | null>(null);
+  const fabricRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   const filteredProducts = React.useMemo(() => {
     if (category === 'All Fabrics') {
@@ -49,16 +56,40 @@ export const FabricsGroup: React.FC<FabricsGroupProps> = ({
         selectedProduct.name,
         selectedProduct.price,
         selectedProduct.id,
-        selectedProduct.image,
+        selectedProduct.images,
       );
     }
   };
+
   useEffect(() => {
-    if (filteredProducts.length > 0 && !activeFabric) {
+    if (filteredProducts.length === 0) {
+      setActiveFabric(null);
+      return;
+    }
+
+    const globalFabricInCurrentCategory = filteredProducts.find(
+      (product) => product.name === selectedFabric?.name,
+    );
+
+    if (globalFabricInCurrentCategory) {
+      const fabricToActivate = globalFabricInCurrentCategory.name;
+      setActiveFabric(fabricToActivate);
+
+      setTimeout(() => {
+        const fabricElement = fabricRefs.current[fabricToActivate];
+        if (fabricElement) {
+          fabricElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'nearest',
+          });
+        }
+      }, 400);
+    } else {
       const firstProduct = filteredProducts[0];
       handleFabricClick(firstProduct.name);
     }
-  }, [filteredProducts, activeFabric]);
+  }, [filteredProducts, category, selectedFabric]);
 
   const handleInfoClick = (product: Product) => {
     onProductInfoToggle?.(product);
@@ -68,16 +99,22 @@ export const FabricsGroup: React.FC<FabricsGroupProps> = ({
     <div className="relative w-full">
       <div className="flex hide-scrollbar flex-row gap-1 md:gap-3 lg:flex-col lg:gap-4">
         {filteredProducts.map((product, index) => (
-          <ProductCard
+          <div
             key={product.id}
-            image={product.image}
-            name={product.name}
-            price={product.price}
-            index={index}
-            activeFabric={activeFabric}
-            onFabricClick={handleFabricClick}
-            onInfoClick={() => handleInfoClick(product)}
-          />
+            ref={(el) => {
+              fabricRefs.current[product.name] = el;
+            }}
+          >
+            <ProductCard
+              images={product.images}
+              name={product.name}
+              price={product.price}
+              index={index}
+              activeFabric={activeFabric}
+              onFabricClick={handleFabricClick}
+              onInfoClick={() => handleInfoClick(product)}
+            />
+          </div>
         ))}
       </div>
     </div>

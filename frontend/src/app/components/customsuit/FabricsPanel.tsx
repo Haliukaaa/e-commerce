@@ -25,10 +25,14 @@ export const FabricsPanel: React.FC<FabricsPanelProps> = ({
     name: string;
     price: string;
     id: string;
-    image: string;
+    images: {
+      fabric: { layer: string; url: string };
+      jacket: { layer: string; url: string }[];
+      trousers: { layer: string; url: string }[];
+    };
   } | null>(null);
 
-  const { setSelectedFabric } = useFabric();
+  const { selectedFabric, setSelectedFabric } = useFabric();
 
   const handleConfirm = () => {
     if (selectedLocalFabric) {
@@ -36,9 +40,14 @@ export const FabricsPanel: React.FC<FabricsPanelProps> = ({
         name: selectedLocalFabric.name,
         price: selectedLocalFabric.price,
         id: selectedLocalFabric.id,
-        image: selectedLocalFabric.image,
+        images: selectedLocalFabric.images,
       });
       setActiveCategory(null);
+      return;
+    }
+    if (selectedFabric) {
+      setActiveCategory(null);
+      return;
     }
   };
 
@@ -46,9 +55,13 @@ export const FabricsPanel: React.FC<FabricsPanelProps> = ({
     name: string,
     price: string,
     id: string,
-    image: string,
+    images: {
+      fabric: { layer: string; url: string };
+      jacket: { layer: string; url: string }[];
+      trousers: { layer: string; url: string }[];
+    },
   ) => {
-    setSelectedLocalFabric({ name, price, id, image });
+    setSelectedLocalFabric({ name, price, id, images });
   };
 
   const categoryComponents = {
@@ -117,7 +130,10 @@ export const FabricsPanel: React.FC<FabricsPanelProps> = ({
         <div className="p-4 hidden lg:block">
           <button
             onClick={handleConfirm}
-            className="flex items-center w-full justify-center rounded-[80px] bg-black text-white pt-[10px] pb-3"
+            className={`flex items-center w-full justify-center rounded-[80px] bg-black text-white pt-[10px] pb-3 
+            ${selectedLocalFabric || selectedFabric ? 'opacity-100' : 'opacity-50 cursor-not-allowed'}
+          `}
+            disabled={!selectedLocalFabric && !selectedFabric}
           >
             <div className="flex items-center gap-2">
               <Check />

@@ -120,12 +120,14 @@ export const FabricContent: React.FC<FabricContentProps> = ({
               {/* Swipe indicator for mobile */}
               {isMobile && (
                 <div
-                  className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-1 bg-gray-300 rounded-full cursor-grab"
+                  className="w-full h-fit p-3"
                   style={{ touchAction: 'none' }}
-                />
+                >
+                  <div className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-1 bg-gray-300 rounded-full" />
+                </div>
               )}
 
-              <div className="relative mx-5 lg:mx-0 mt-5 overflow-hidden rounded-md lg:rounded-none lg:mt-0">
+              <div className="relative mx-5 lg:mx-0 overflow-hidden rounded-md lg:rounded-none lg:mt-0">
                 {/* Desktop Close Button */}
                 {!isMobile && (
                   <button
@@ -138,7 +140,7 @@ export const FabricContent: React.FC<FabricContentProps> = ({
 
                 <div className="w-full overflow-hidden rounded-md lg:rounded-none">
                   <img
-                    src={activeProductInfo.image}
+                    src={activeProductInfo.images.fabric.url}
                     alt={activeProductInfo.name}
                     className="w-full max-h-[147px] lg:max-h-full lg:h-auto lg:aspect-square object-cover"
                   />

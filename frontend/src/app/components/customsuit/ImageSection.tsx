@@ -1,76 +1,72 @@
 import React from 'react';
 
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-
-interface Style {
-  id: number;
-  name: string;
-  stylePrefix: string;
-  image?: string;
-}
-
-interface Material {
-  id: number;
-  name: string;
-  price: string;
-  fabricNumber: number;
-  image?: string;
-}
-
 interface ImageSectionProps {
-  selectedStyle: Style | null;
-  selectedMaterial: Material | null;
+  currentView: 'jacket' | 'trousers';
+  setCurrentView: React.Dispatch<React.SetStateAction<'jacket' | 'trousers'>>;
 }
 
 export const ImageSection: React.FC<ImageSectionProps> = ({
-  selectedStyle,
-  selectedMaterial,
+  currentView,
+  setCurrentView,
 }) => {
-  const defaultStyle = { id: 1, name: 'Classic Fit', stylePrefix: 'style1' };
-  const currentStyle = selectedStyle || defaultStyle;
-
-  const fabricNumber = selectedMaterial?.fabricNumber || 1;
-  const imagePath = `/${currentStyle.stylePrefix}-fab${fabricNumber}.png`;
-
-  const router = useRouter();
-
-  const handleOrderClick = () => {
-    if (!selectedStyle || !selectedMaterial) {
-      alert('Та эхлээд материал болон загвараа сонгоно уу.');
-      return;
-    }
-
-    // const queryParams = new URLSearchParams({
-    //   styleId: selectedStyle.id.toString(),
-    //   styleName: selectedStyle.name,
-    //   materialId: selectedMaterial.id.toString(),
-    //   materialName: selectedMaterial.name,
-    //   price: selectedMaterial.price,
-    // }).toString();
-
-    router.push(`/order`);
+  const handleToggleView = (view: 'jacket' | 'trousers') => {
+    setCurrentView(view);
   };
 
   return (
     <div className="w-full h-full flex-1 bg-neutral">
       <div className="relative w-full h-full flex justify-center items-center p-4">
-        <button
-          onClick={handleOrderClick}
-          className="py-1 px-5 transition-all duration-300 ease-in-out hover:bg-primary hover:text-white rounded-xl bg-neutral-300 absolute right-4 top-4 z-10"
-        >
+        {/* Order Button */}
+        <button className="py-1 px-5 transition-all duration-300 ease-in-out hover:bg-primary hover:text-white rounded-xl bg-neutral-300 absolute right-4 top-4 z-10">
           Дуусгах
         </button>
+
+        {/* Image Display */}
         <div className="relative w-full h-full flex items-center justify-center">
           <div className="relative w-full h-full max-w-[300px]">
-            <Image
-              src={imagePath}
-              alt={`${currentStyle.name} with ${selectedMaterial?.name || 'default'} material`}
-              layout="fill"
-              className="object-contain"
-              priority
-            />
+            {/* {currentView === 'jacket' && (
+              <Image
+                src={}
+                alt={}
+                layout="fill"
+                className="object-contain"
+                priority
+              />
+            )}
+            {currentView === 'trousers' && (
+              <Image
+                src={}
+                alt={}
+                layout="fill"
+                className="object-contain"
+                priority
+              />
+            )} */}
           </div>
+        </div>
+
+        {/* Navigation Arrows */}
+        <div className="absolute bottom-4 flex gap-4">
+          <button
+            onClick={() => handleToggleView('jacket')}
+            className={`py-2 px-4 rounded-lg ${
+              currentView === 'jacket'
+                ? 'bg-primary text-white'
+                : 'bg-neutral-300'
+            }`}
+          >
+            Jacket
+          </button>
+          <button
+            onClick={() => handleToggleView('trousers')}
+            className={`py-2 px-4 rounded-lg ${
+              currentView === 'trousers'
+                ? 'bg-primary text-white'
+                : 'bg-neutral-300'
+            }`}
+          >
+            Trousers
+          </button>
         </div>
       </div>
     </div>

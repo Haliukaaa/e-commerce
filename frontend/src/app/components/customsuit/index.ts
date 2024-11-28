@@ -1,6 +1,3 @@
-export * from './AllFabricsGroup';
-export * from './BestSellersGroup';
-export * from './BusinessGroup';
 export * from './FabricCard';
 export * from './FabricContent';
 export * from './FabricsGroup';
@@ -8,5 +5,4 @@ export * from './FabricsHeader';
 export * from './FabricsPanel';
 export * from './ImageSection';
 export * from './MenuSection';
-export * from './NewArrivalsGroup';
 export * from './ProductCard';
