@@ -114,9 +114,9 @@ export const FabricContent: React.FC<FabricContentProps> = ({
             dragMomentum={false}
             onDragEnd={isMobile ? handleMobileDragEnd : undefined}
             transition={{ type: 'tween', duration: 0.3 }}
-            className="fixed top-11 lg:top-[50px] right-0 bottom-0 w-full lg:w-[30%] lg:bg-white z-20 overflow-hidden"
+            className="fixed top-11 lg:top-[50px] right-0 bottom-0 w-full lg:w-[30%] lg:bg-white z-20 overflow-y-auto"
           >
-            <div className="h-[75vh] fixed w-full bottom-0 rounded-lg lg:rounded-none shadow-2xl lg:shadow-none lg:static bg-white lg:h-auto overflow-y-auto">
+            <div className="h-[75dvh] fixed w-full bottom-0 rounded-lg lg:rounded-none shadow-2xl lg:shadow-none lg:static bg-white lg:h-auto overflow-y-auto">
               {/* Swipe indicator for mobile */}
               {isMobile && (
                 <div
