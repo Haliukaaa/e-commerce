@@ -1,24 +1,17 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 
 import { ImageSection, MenuSection } from '../components/customsuit';
 import { FabricProvider } from '../utils/context/fabricContext';
 
 const Home = () => {
-  const [currentView, setCurrentView] = useState<'jacket' | 'trousers'>(
-    'jacket',
-  );
-
   return (
     <FabricProvider>
       <div className="grid grid-rows-[auto_auto] pt-11 lg:pt-[50px] grid-cols-1 lg:flex lg:flex-row h-dvh">
         {/* Left Section: Image */}
         <div className="flex-1 lg:flex-1 lg:w-[70%] ">
           <div className="h-[calc(100dvh-224px)] md:h-[calc(100dvh-294px)] lg:h-full bg-[#efefef] transition-all duration-300 overflow-hidden">
-            <ImageSection
-              currentView={currentView}
-              setCurrentView={setCurrentView}
-            />
+            <ImageSection />
           </div>
         </div>
 

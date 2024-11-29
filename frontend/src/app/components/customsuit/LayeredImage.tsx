@@ -41,13 +41,16 @@ export const LayeredImage: React.FC<LayeredImageProps> = ({ currentView }) => {
     <div className="w-full h-full flex items-center justify-center">
       <div className="w-full h-full">
         <div className="relative w-full h-full">
-          {layerOrder.map((layerName) => {
+          {layerOrder.map((layerName, index) => {
             const layerImage = viewImages.find(
               (img) => img.layer === layerName,
             );
 
             return layerImage ? (
-              <div className="absolute w-full flex justify-center h-full object-contain max-w-full max-h-full">
+              <div
+                key={index}
+                className="absolute w-full flex justify-center h-full object-contain max-w-full max-h-full"
+              >
                 <img
                   key={layerName}
                   src={layerImage.url}

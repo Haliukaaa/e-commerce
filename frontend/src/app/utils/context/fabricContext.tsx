@@ -9,6 +9,10 @@ interface FabricContextType {
   setSelectedLocalFabric: (fabric: Product | null) => void;
   isPreview: boolean;
   setIsPreview: React.Dispatch<React.SetStateAction<boolean>>;
+  currentView: 'jacket' | 'trousers';
+  setCurrentView: React.Dispatch<React.SetStateAction<'jacket' | 'trousers'>>;
+  activeSection: string;
+  setActiveSection: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const FabricContext = createContext<FabricContextType | undefined>(undefined);
@@ -20,6 +24,10 @@ export const FabricProvider: React.FC<{ children: React.ReactNode }> = ({
   const [isPreview, setIsPreview] = useState<boolean>(false);
   const [selectedLocalFabric, setSelectedLocalFabric] =
     useState<Product | null>(null);
+  const [currentView, setCurrentView] = useState<'jacket' | 'trousers'>(
+    'jacket',
+  );
+  const [activeSection, setActiveSection] = useState<string>('Fabric');
 
   return (
     <FabricContext.Provider
@@ -30,6 +38,10 @@ export const FabricProvider: React.FC<{ children: React.ReactNode }> = ({
         setIsPreview,
         selectedLocalFabric,
         setSelectedLocalFabric,
+        currentView,
+        setCurrentView,
+        activeSection,
+        setActiveSection,
       }}
     >
       {children}
