@@ -107,12 +107,12 @@ export const LayeredImage: React.FC<LayeredImageProps> = ({ currentView }) => {
             );
 
             return layerImage ? (
-              <div className="absolute w-full h-full object-contain max-w-full max-h-full">
+              <div className="absolute w-full flex justify-center h-full object-contain max-w-full max-h-full">
                 <img
                   key={layerName}
                   src={layerImage.url}
                   alt={`${currentView} ${layerName} layer`}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full lg:max-w-[350px] object-contain"
                   style={{
                     zIndex: layerOrder.indexOf(layerName),
                   }}

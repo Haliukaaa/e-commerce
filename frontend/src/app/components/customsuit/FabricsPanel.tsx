@@ -47,6 +47,8 @@ export const FabricsPanel: React.FC<FabricsPanelProps> = ({
       setIsPreview(false);
       return;
     }
+    setActiveCategory(null);
+    setIsPreview(false);
   };
 
   const handleFabricSelect = (
@@ -128,10 +130,7 @@ export const FabricsPanel: React.FC<FabricsPanelProps> = ({
         <div className="p-4 hidden lg:block">
           <button
             onClick={handleConfirm}
-            className={`flex items-center w-full justify-center rounded-[80px] bg-black text-white pt-[10px] pb-3 
-            ${selectedLocalFabric || selectedFabric ? 'opacity-100' : 'opacity-50 cursor-not-allowed'}
-          `}
-            disabled={!selectedLocalFabric && !selectedFabric}
+            className="flex items-center w-full justify-center rounded-[80px] bg-black text-white pt-[10px] pb-3"
           >
             <div className="flex items-center gap-2">
               <Check />

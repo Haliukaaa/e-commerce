@@ -3,7 +3,7 @@ export const fabricGroups: FabricGroup[] = [
   {
     id: 1,
     name: 'All Fabrics',
-    itemCount: 320,
+    itemCount: 12,
     images: [
       'https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/products/cm-sample/default/S899.601-4315_23',
       'https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/products/cm-sample/default/S504.801-360_23',
@@ -14,7 +14,7 @@ export const fabricGroups: FabricGroup[] = [
   {
     id: 2,
     name: 'New Arrivals',
-    itemCount: 29,
+    itemCount: 10,
     images: [
       'https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/products/cm-sample/default/S595.401-57_23',
       'https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/products/cm-sample/default/S5057-4_23',
@@ -25,7 +25,7 @@ export const fabricGroups: FabricGroup[] = [
   {
     id: 3,
     name: 'Best Sellers',
-    itemCount: 19,
+    itemCount: 9,
     images: [
       'https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/products/cm-sample/default/S899.601-5730_23',
       'https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/products/cm-sample/default/Sdugdale-9412_23',
@@ -36,7 +36,7 @@ export const fabricGroups: FabricGroup[] = [
   {
     id: 4,
     name: 'Business',
-    itemCount: 24,
+    itemCount: 8,
     images: [
       'https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/products/cm-sample/default/S504.801-360_23',
       'https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/products/cm-sample/default/S2301T.20-52R_23',
