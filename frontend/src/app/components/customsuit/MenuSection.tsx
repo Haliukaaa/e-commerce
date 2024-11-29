@@ -18,7 +18,7 @@ export const MenuSection: React.FC = () => {
         {categories.map((category) => (
           <button
             key={category}
-            className={`px-[12px] lg:px-[14px] pt-[5px] lg:pt-[7px] pb-[9px] text-sm lg:text-base lg:pb-[11px] xl:px-4 py-2 rounded-full ${
+            className={`px-[12px] md:px-[14px] pt-[5px] md:pt-[7px] pb-[9px] text-sm md:text-base md:pb-[11px] xl:px-4 py-2 rounded-full ${
               activeSection === category
                 ? 'bg-gray-100 text-gray-600 font-medium'
                 : 'text-gray-700'
@@ -31,11 +31,11 @@ export const MenuSection: React.FC = () => {
       </div>
 
       {/* Content Area */}
-      <div className="flex-1 relative overflow-hidden">
+      <div className="flex-1 relative bg-white overflow-hidden">
         <div className="h-full w-full absolute">
           {activeSection === 'Fabric' && (
             <div className="h-full overflow-y-auto overflow-hidden">
-              <div className="p-2 lg:p-4 overflow-hidden">
+              <div className="p-2 lg:p-4 h-full">
                 <FabricContent
                   fabricGroups={fabricGroups}
                   activeCategory={activeCategory}

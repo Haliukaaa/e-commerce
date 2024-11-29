@@ -21,18 +21,14 @@ export const FabricsPanel: React.FC<FabricsPanelProps> = ({
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [headerHidden, setHeaderHidden] = useState(false);
-  const [selectedLocalFabric, setSelectedLocalFabric] = useState<{
-    name: string;
-    price: string;
-    id: string;
-    images: {
-      fabric: { layer: string; url: string };
-      jacket: { layer: string; url: string }[];
-      trousers: { layer: string; url: string }[];
-    };
-  } | null>(null);
 
-  const { selectedFabric, setSelectedFabric } = useFabric();
+  const {
+    selectedFabric,
+    setSelectedFabric,
+    setIsPreview,
+    selectedLocalFabric,
+    setSelectedLocalFabric,
+  } = useFabric();
 
   const handleConfirm = () => {
     if (selectedLocalFabric) {
@@ -43,10 +39,12 @@ export const FabricsPanel: React.FC<FabricsPanelProps> = ({
         images: selectedLocalFabric.images,
       });
       setActiveCategory(null);
+      setIsPreview(false);
       return;
     }
     if (selectedFabric) {
       setActiveCategory(null);
+      setIsPreview(false);
       return;
     }
   };

@@ -65,7 +65,7 @@ export const FabricContent: React.FC<FabricContentProps> = ({
   };
 
   return (
-    <div className="relative">
+    <div className="relative flex items-center h-full lg:block">
       <AnimatePresence mode="wait">
         {!activeCategory ? (
           <motion.div
