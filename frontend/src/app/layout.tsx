@@ -3,6 +3,8 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { Roboto_Condensed } from 'next/font/google';
 
+import { Navbar } from './components/navbar/Navbar';
+
 import './globals.css';
 
 const roboto = Roboto_Condensed({
@@ -24,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.className} antialiased`}>
+        <Navbar />
         <main className="h-screen w-screen">{children}</main>
       </body>
     </html>
