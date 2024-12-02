@@ -8,13 +8,13 @@ export const ImageSection: React.FC = () => {
   const { currentView, setCurrentView } = useFabric();
   return (
     <div className="w-full h-full">
-      <div className="flex flex-col w-full h-full items-center space-y-4">
+      <div className="flex flex-col w-full h-full items-center pb-3">
         {/* Layered Image Display */}
         <div className="flex-1 w-full h-full">
           <LayeredImage currentView={currentView} />
         </div>
         {/* View Toggle Buttons */}
-        <div className="flex absolute space-x-2 bottom-3 z-30">
+        <div className="flex space-x-2">
           <button
             onClick={() => {
               console.log('clicked');
