@@ -13,6 +13,10 @@ interface FabricContextType {
   setCurrentView: React.Dispatch<React.SetStateAction<'jacket' | 'trousers'>>;
   activeSection: string;
   setActiveSection: React.Dispatch<React.SetStateAction<string>>;
+  selectedStyle: string | null;
+  setSelectedStyle: (style: string | null) => void;
+  activeStyle: string;
+  setActiveStyle: (style: string) => void;
 }
 
 const FabricContext = createContext<FabricContextType | undefined>(undefined);
@@ -28,6 +32,8 @@ export const FabricProvider: React.FC<{ children: React.ReactNode }> = ({
     'jacket',
   );
   const [activeSection, setActiveSection] = useState<string>('Fabric');
+  const [activeStyle, setActiveStyle] = useState<string>('Havana');
+  const [selectedStyle, setSelectedStyle] = useState<string | null>(null);
 
   return (
     <FabricContext.Provider
@@ -42,6 +48,10 @@ export const FabricProvider: React.FC<{ children: React.ReactNode }> = ({
         setCurrentView,
         activeSection,
         setActiveSection,
+        selectedStyle,
+        setSelectedStyle,
+        activeStyle,
+        setActiveStyle,
       }}
     >
       {children}
