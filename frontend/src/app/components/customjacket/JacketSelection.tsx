@@ -60,13 +60,11 @@ export const JacketSelection = () => {
         <div className="flex gap-2 lg:pt-8 pt-7 pb-2">
           <Image
             src="https://cdn.suitsupply.com/image/upload/svg/base_style.svg"
-            alt="Choose your style"
+            alt="Загвараа сонгоно уу"
             width={24}
             height={24}
           />
-          <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl">
-            Choose your style
-          </h1>
+          <h1 className="font-bold text-2xl">Загвараа сонгоно уу</h1>
         </div>
       </div>
 
@@ -98,7 +96,7 @@ export const JacketSelection = () => {
         </div>
       </div>
 
-      <div className="flex-1">
+      <div className="flex-1 xl:mt-7">
         <div className="flex gap-1 justify-center mb-2">
           {styles.map((el, i) => {
             return (
