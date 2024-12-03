@@ -100,7 +100,7 @@ export const Navbar: React.FC = () => {
       </div>
 
       {/* Right side - Header Actions */}
-      <div className="flex items-center space-x-1 md:space-x-2 lg:space-x-4 pr-3 lg:pr-4">
+      <div className="flex items-center space-x-1 md:space-x-2 lg:space-x-4 pr-1">
         {/* Account */}
         <Link
           href="/account"
