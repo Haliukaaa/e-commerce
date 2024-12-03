@@ -131,9 +131,9 @@ export const FabricContent: React.FC<FabricContentProps> = ({
               onDragEnd={isMobile ? handleMobileDragEnd : undefined}
               transition={{ type: 'tween', duration: 0.3 }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full lg:w-[30%] xl:w-[25%] lg:absolute lg:top-[50px] lg:right-0 z-10"
+              className="w-full lg:w-[30%] xl:w-[25%] lg:absolute bottom-0 lg:top-[50px] lg:right-0 z-10"
             >
-              <div className="h-[75dvh] w-full bottom-0 rounded-lg lg:rounded-none shadow-2xl lg:shadow-none bg-white lg:h-auto overflow-y-auto">
+              <div className="h-[75dvh] w-full bottom-0 rounded-lg lg:rounded-none shadow-2xl lg:shadow-none bg-white lg:h-full overflow-y-auto">
                 {/* Mobile swipe indicator */}
                 {isMobile && (
                   <div
