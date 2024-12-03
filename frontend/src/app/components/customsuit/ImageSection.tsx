@@ -2,26 +2,24 @@ import React from 'react';
 
 import { LayeredImage } from './';
 
-interface ImageSectionProps {
-  currentView: 'jacket' | 'trousers';
-  setCurrentView: React.Dispatch<React.SetStateAction<'jacket' | 'trousers'>>;
-}
+import { useFabric } from '@/app/utils/context/fabricContext';
 
-export const ImageSection: React.FC<ImageSectionProps> = ({
-  currentView,
-  setCurrentView,
-}) => {
+export const ImageSection: React.FC = () => {
+  const { currentView, setCurrentView } = useFabric();
   return (
     <div className="w-full h-full">
-      <div className="flex flex-col w-full h-full items-center space-y-4">
+      <div className="flex flex-col w-full h-full items-center pb-3">
         {/* Layered Image Display */}
         <div className="flex-1 w-full h-full">
           <LayeredImage currentView={currentView} />
         </div>
         {/* View Toggle Buttons */}
-        <div className="flex absolute space-x-2 bottom-3">
+        <div className="flex space-x-2">
           <button
-            onClick={() => setCurrentView('jacket')}
+            onClick={() => {
+              console.log('clicked');
+              setCurrentView('jacket');
+            }}
             className={`px-2 text-base rounded-full ${
               currentView === 'jacket'
                 ? 'bg-primary text-white'
@@ -31,7 +29,10 @@ export const ImageSection: React.FC<ImageSectionProps> = ({
             Jacket
           </button>
           <button
-            onClick={() => setCurrentView('trousers')}
+            onClick={() => {
+              console.log('clicked trousers');
+              setCurrentView('trousers');
+            }}
             className={`px-2 text-base rounded-full ${
               currentView === 'trousers'
                 ? 'bg-primary text-white'

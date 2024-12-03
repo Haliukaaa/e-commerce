@@ -1,5 +1,7 @@
+export * from '../HomePage';
 export * from './FabricCard';
 export * from './FabricContent';
+export * from './FabricSection';
 export * from './FabricsGroup';
 export * from './FabricsHeader';
 export * from './FabricsPanel';

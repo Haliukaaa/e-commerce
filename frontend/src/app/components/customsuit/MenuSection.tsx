@@ -3,13 +3,14 @@ import React, { useState } from 'react';
 
 import { FabricContent } from './';
 
+import { useFabric } from '@/app/utils/context/fabricContext';
 import { fabricGroups } from '@/app/utils/mockdata/suit-mockdata';
 
 const categories = ['Fabric', 'Jacket', 'Trousers', 'Waistcoat'];
 
 export const MenuSection: React.FC = () => {
-  const [activeSection, setActiveSection] = useState('Fabric');
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const { activeSection, setActiveSection } = useFabric();
 
   return (
     <div className="flex flex-col h-full">
