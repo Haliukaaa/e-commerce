@@ -126,7 +126,7 @@ export const JacketSelection = () => {
             onClick={handleStyleConfirm}
             className="bg-black rounded-[23px] text-white px-16 py-2"
           >
-            Confirm
+            Баталгаажуулах
           </button>
         </div>
       </div>

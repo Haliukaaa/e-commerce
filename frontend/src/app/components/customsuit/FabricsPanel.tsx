@@ -134,7 +134,7 @@ export const FabricsPanel: React.FC<FabricsPanelProps> = ({
           >
             <div className="flex items-center gap-2">
               <Check />
-              <span>Confirm</span>
+              <span>Баталгаажуулах</span>
             </div>
           </button>
         </div>
