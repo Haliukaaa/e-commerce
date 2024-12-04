@@ -20,7 +20,7 @@ export const JacketSection: React.FC<JacketSectionProps> = () => {
 
       {/* Right Section: Menu */}
       <div className="lg:w-[30%] xl:w-[25%] h-[180px] md:h-[244px] bg-white lg:min-h-0 lg:h-full">
-        <div className="h-full overflow-hidden">
+        <div className="h-full overflow-y-auto overflow-hidden">
           <MenuSection />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { FabricGroup, Product } from '../types/customsuit';
+import { FabricGroup, JacketType, Product } from '../types/customsuit';
 export const fabricGroups: FabricGroup[] = [
   {
     id: 1,
@@ -42,6 +42,207 @@ export const fabricGroups: FabricGroup[] = [
       'https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/products/cm-sample/default/S2301T.20-52R_23',
       'https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/products/cm-sample/default/S62694-1_23',
       'https://cdn.suitsupply.com/image/upload/b_rgb:ffffff,c_fit,f_auto,h_450,q_auto:good,w_450/products/cm-sample/default/S599.101-855_23',
+    ],
+  },
+];
+
+export const jacket: JacketType[] = [
+  {
+    id: 1,
+    name: 'Товчлолт',
+    image:
+      'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/MBN2',
+    variations: [
+      {
+        name: '1 товч',
+        description:
+          'Хар зангиатай арга хэмжээнд тохиромжтой, бие барьсан бөгөөд сайхан оёдолтой харагдана.',
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/MBN1',
+      },
+      {
+        name: '2 товч',
+        description:
+          'Стандарт 2 товч нь орчин үеийн, олон талт дүр төрхийг бий болгодог.',
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/MBN2',
+      },
+      {
+        name: '2.5 товч',
+        description:
+          'Энгэр дээр нэмэлт товчтой загвар нь гоёмсог, загварлаг харагдах зориулалттай.',
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/MBN2.5',
+      },
+      {
+        name: '4 хос товч',
+        description:
+          'Сонгодог загварыг залуу, илүү нарийн хувилбараар санал болгодог.',
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/MBN4DB',
+      },
+      {
+        name: '6 хос товч',
+        description:
+          'Давхар товчтой сонгодог загварыг орчин үеийн хэлбэрээр илэрхийлнэ.',
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/MBN6DB',
+      },
+      {
+        name: '6 хос доор товч',
+        description:
+          'Доор байрласан 6 товч нь спортлог, сонгодог хэв маягийг харуулна.',
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/MBNL6DB',
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: 'Товч',
+    image:
+      'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/TFH01',
+    variations: [
+      {
+        name: 'Хар хүрэн',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/TFH01',
+      },
+      {
+        name: 'Хар хүрэн алаг',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/B09',
+      },
+      {
+        name: 'Цайвар ба хар хүрэн',
+        price: 5000,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/TRH02',
+      },
+      {
+        name: 'Цагаан ба бор',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/STR',
+      },
+      {
+        name: 'Цайвар саарал ба нүүрсэн саарал',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/G4',
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: 'Доторлогоо',
+    image:
+      'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/LFL1',
+    variations: {
+      type: [
+        {
+          name: 'Бүрэн доторлогоо',
+          price: 0,
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/LFL1',
+          description: `Хүрэмний их бие болон ханцуйг бүхэлд нь доторлосон загвар.`,
+        },
+        {
+          name: 'Хагас доторлогоо',
+          price: 0,
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/LHL2',
+          description: `Доторлогоо нь хүрэмний дээд хэсэг болон ханцуйнд байршдаг.`,
+        },
+        {
+          name: 'Эрвээхэй доторлогоо',
+          price: 10000,
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/LBF4',
+          description:
+            'Гар хийцийн доторлогоо нь хүрэмний дээд ар хэсэгт байрладаг.',
+        },
+        {
+          name: 'Доторгүй',
+          price: 10000,
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/LUN3',
+          description:
+            'Доторгүй загвар нь зөвхөн ханцуйнд доторлогоотой бөгөөд их биед байхгүй.',
+        },
+      ],
+      color: [
+        {
+          name: 'Цагаан',
+          url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/lining_ui_v3/1098',
+        },
+        {
+          name: 'Бэйж',
+          url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/lining_ui_v3/1106',
+        },
+        {
+          name: 'Цайвар саарал',
+          url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/lining_ui_v3/3220',
+        },
+        {
+          name: 'Хар',
+          url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/lining_ui_v3/100',
+        },
+        {
+          name: 'Бор хээтэй',
+          url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/lining_ui_v3/CL0677-100',
+        },
+      ],
+    },
+  },
+  {
+    id: 4,
+    name: 'Энгэр',
+    image:
+      'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/LN1',
+
+    variations: {
+      lapel: [
+        {
+          name: 'Өнцөгтэй',
+          price: 0,
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/LP2',
+        },
+        {
+          name: 'Шулуун өнцөгтэй',
+          price: 0,
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/LP4',
+        },
+      ],
+      width: [
+        {
+          name: 'Нарийн',
+          price: 0,
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/RPLWN1',
+        },
+        {
+          name: 'Стандарт',
+          price: 0,
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/RPLWS2',
+        },
+      ],
+      buttonhole: [
+        {
+          name: 'Уламжлалт',
+          price: 0,
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/BHFUNC1',
+        },
+        {
+          name: 'Гар хийцийн',
+          price: 20000,
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/BHMIL2',
+        },
+      ],
+    },
+  },
+  {
+    id: 5,
+    name: 'Монограм',
+    image:
+      'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/monogramStyle/jacket/MOI1N',
+    variations: [
+      {
+        name: 'Хүрэмний дотор талд',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/MOL1',
+      },
+      {
+        name: 'Энгэрийн доод талд',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/MOL2',
+      },
     ],
   },
 ];

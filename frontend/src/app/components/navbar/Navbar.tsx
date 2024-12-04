@@ -17,7 +17,6 @@ export const Navbar: React.FC = () => {
           <Menu size={24} className="stroke-1" />
         </button>
       </div>
-
       {/* Centered Logo */}
       <div className="absolute left-1/2 transform -translate-x-1/2">
         <Link href="/">

@@ -20,6 +20,28 @@ export interface FabricGroup {
   images: string[];
 }
 
+interface JacketVariation {
+  name: string;
+  description?: string;
+  price?: number;
+  url?: string;
+}
+
+interface JacketType {
+  id: number;
+  name: string;
+  image: string;
+  variations:
+    | JacketVariation[]
+    | {
+        type?: JacketVariation[];
+        color?: JacketVariation[];
+        lapel?: JacketVariation[];
+        width?: JacketVariation[];
+        buttonhole?: JacketVariation[];
+      };
+}
+
 export interface Product {
   id: string;
   name: string;
