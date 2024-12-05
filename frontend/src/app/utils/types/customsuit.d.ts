@@ -34,6 +34,8 @@ interface JacketType {
   variations:
     | JacketVariation[]
     | {
+        button?: JacketVariation[];
+        sleeve?: JacketVariation[];
         type?: JacketVariation[];
         color?: JacketVariation[];
         lapel?: JacketVariation[];
@@ -56,3 +58,12 @@ export interface Product {
   category?: string[];
   care?: string;
 }
+
+export type VariationKey = 'Доторлогоо' | 'Товч' | 'Энгэр';
+export type VariationType =
+  | 'type'
+  | 'color'
+  | 'button'
+  | 'sleeve'
+  | 'width'
+  | 'lapel';

@@ -24,7 +24,7 @@ export const MenuSection: React.FC = () => {
         />
 
         {/* Content Area */}
-        <div className="px-4 md:p-4 w-full h-full flex flex-row lg:flex-col gap-3">
+        <div className="p-3 md:p-4 w-full h-full flex flex-row lg:flex-col gap-3">
           <BaseStyleCard styleName={selectedStyle} onEdit={onEdit} />
           <JacketContent
             activeCategory={activeCategory}

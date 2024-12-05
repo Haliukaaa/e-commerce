@@ -1,12 +1,12 @@
 import React from 'react';
-import Image from 'next/image';
 
 interface CardProps {
   imageSrc: string;
   imageAlt?: string;
   title: string;
   description: string | undefined;
-  index: number;
+  isSelected: boolean;
+  onSelect: () => void;
 }
 
 export const DetailCard: React.FC<CardProps> = ({
@@ -14,40 +14,41 @@ export const DetailCard: React.FC<CardProps> = ({
   imageAlt = '',
   title,
   description,
-  index,
+  isSelected,
+  onSelect,
 }) => {
   return (
     <div
+      onClick={onSelect}
       className={`
-        flex gap-1 md:gap-2 lg:gap-3 flex-col lg:flex-row items-center
+        flex gap-1 md:gap-2 lg:gap-3 flex-col cursor-pointer lg:flex-row items-center
         border-2 border-opacity-0 border-gray-500
-        lg:p-1 rounded-[4px] w-full
-        ${index === 0 ? 'lg:border-2 lg:border-gray-500 lg:border-opacity-100' : ''}
+        lg:p-1 rounded-[4px] transition-all duration-150 ease-linear
+        ${
+          isSelected
+            ? 'lg:border-2 lg:border-opacity-100 lg:ring-4 lg:ring-gray-300 lg:border-gray-500'
+            : ''
+        }
       `}
     >
       <div
         className={`
-    w-full lg:w-1/3 aspect-square relative
+    md:w-[116px] md:h-[116px] w-[88px] h-[88px] aspect-square relative
     rounded-[5px] overflow-hidden
-    border-2 border-gray-500
+    border-2 border-gray-500 border-opacity-0
     ${
-      index === 0
-        ? 'border-opacity-100 lg:border-opacity-0'
-        : 'border-opacity-0'
+      isSelected
+        ? 'border-2 border-opacity-100 ring-4 ring-gray-300 border-gray-500 lg:border-opacity-0 lg:ring-opacity-0'
+        : ''
     }
   `}
       >
-        <div className="w-full h-full p-1 lg:p-0">
-          {' '}
-          {/* Padding wrapper */}
-          <div className="w-full h-full relative">
-            {' '}
-            {/* Position relative container */}
-            <Image
+        <div className="w-full h-full lg:p-0">
+          <div className="w-full h-full p-1 aspect-square md:h-28 relative">
+            <img
               src={imageSrc}
               alt={imageAlt}
-              fill
-              className="object-cover rounded-[5px]"
+              className="object-cover h-full w-full rounded-[5px]"
               loading="lazy"
             />
           </div>
@@ -55,15 +56,17 @@ export const DetailCard: React.FC<CardProps> = ({
       </div>
       <div className="w-full lg:w-2/3">
         <div
-          className="lg:text-lg text-center lg:text-start lg:font-semibold text-sm md:text-base text-gray-800"
-          data-test-id="card-text"
+          className="lg:text-lg 
+    text-center lg:text-start 
+    lg:font-semibold 
+    text-base 
+    text-gray-800 max-w-[80px]
+    truncate lg:max-w-full
+    md:max-w-[116px]"
         >
           {title}
         </div>
-        <div
-          className="text-sm hidden lg:block text-gray-600"
-          data-test-id="card-subtext"
-        >
+        <div className="text-sm hidden lg:block text-gray-600">
           {description}
         </div>
       </div>

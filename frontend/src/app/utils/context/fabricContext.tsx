@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 
-import { Product } from '../types/customsuit';
+import { Product, VariationKey, VariationType } from '../types/customsuit';
 
 interface FabricContextType {
   selectedFabric: Product | null;
@@ -17,6 +17,8 @@ interface FabricContextType {
   setSelectedStyle: (style: string | null) => void;
   activeStyle: string;
   setActiveStyle: (style: string) => void;
+  variations: Record<VariationKey, VariationType>;
+  setVariation: (category: VariationKey, variation: VariationType) => void;
 }
 
 const FabricContext = createContext<FabricContextType | undefined>(undefined);
@@ -34,7 +36,17 @@ export const FabricProvider: React.FC<{ children: React.ReactNode }> = ({
   const [activeSection, setActiveSection] = useState<string>('Fabric');
   const [activeStyle, setActiveStyle] = useState<string>('Havana');
   const [selectedStyle, setSelectedStyle] = useState<string | null>(null);
+  const [variations, setVariations] = useState<
+    Record<VariationKey, VariationType>
+  >({
+    Доторлогоо: 'type',
+    Товч: 'button',
+    Энгэр: 'lapel',
+  });
 
+  const setVariation = (category: VariationKey, variation: VariationType) => {
+    setVariations((prev) => ({ ...prev, [category]: variation }));
+  };
   return (
     <FabricContext.Provider
       value={{
@@ -52,6 +64,8 @@ export const FabricProvider: React.FC<{ children: React.ReactNode }> = ({
         setSelectedStyle,
         activeStyle,
         setActiveStyle,
+        variations,
+        setVariation,
       }}
     >
       {children}

@@ -37,14 +37,14 @@ export const JacketContent: React.FC<JacketContentProps> = ({
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
 
   return (
-    <div className="relative flex items-center h-full lg:block">
+    <div className="relative overflow-x-auto lg:overflow-x-hidden overflow-y-hidden lg:overflow-y-auto flex lg:items-center h-full lg:block">
       <AnimatePresence mode="wait">
         {!activeCategory ? (
           <motion.div
             key="jacket-groups"
             {...(isMobile ? mobileVariants : desktopVariants)}
             transition={pageTransition}
-            className="space-y-1 flex lg:flex-col gap-3 overflow-y-auto"
+            className="space-x-3 flex flex-row lg:flex-col lg:space-x-0 lg:space-y-3"
           >
             {jacket.map((group) => (
               <JacketCard

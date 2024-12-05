@@ -1,14 +1,16 @@
 import React, { useRef, useState } from 'react';
 
 import { AnimatePresence } from 'framer-motion';
-import { Check, ListFilter, Search } from 'lucide-react';
+import { Check } from 'lucide-react';
 
-import { CardGroup, FabricsHeader } from './';
+import { FabricsHeader } from '../customsuit';
+
+import { DetailCardGroup, VariationToggleButtons } from './';
 
 import { useFabric } from '@/app/utils/context/fabricContext';
 
 interface JacketPanelProps {
-  activeCategory: string | null;
+  activeCategory: string;
   setActiveCategory: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
@@ -41,11 +43,11 @@ export const JacketPanel: React.FC<JacketPanelProps> = ({
   };
 
   const categoryComponents = {
-    Товчлолт: () => <CardGroup category="Товчлолт" />,
-    Товч: () => <CardGroup category="Товч" />,
-    Доторлогоо: () => <CardGroup category="Доторлогоо" />,
-    Энгэр: () => <CardGroup category="Энгэр" />,
-    Монограм: () => <CardGroup category="Монограм" />,
+    Товчлолт: () => <DetailCardGroup category="Товчлолт" />,
+    Товч: () => <DetailCardGroup category="Товч" />,
+    Доторлогоо: () => <DetailCardGroup category="Доторлогоо" />,
+    Энгэр: () => <DetailCardGroup category="Энгэр" />,
+    Монограм: () => <DetailCardGroup category="Монограм" />,
   };
 
   const CategoryComponent =
@@ -54,20 +56,31 @@ export const JacketPanel: React.FC<JacketPanelProps> = ({
 
   return (
     <div className="flex flex-col h-full z-50">
-      <AnimatePresence>
-        <FabricsHeader
-          activeCategory={activeCategory}
-          scrollContainerRef={scrollContainerRef}
-          onHeaderVisibilityChange={setHeaderHidden}
+      {['Доторлогоо', 'Товч', 'Энгэр'].includes(activeCategory || '') ? (
+        <VariationToggleButtons
+          category={activeCategory}
           handleConfirm={handleConfirm}
         />
-      </AnimatePresence>
+      ) : (
+        <AnimatePresence>
+          <FabricsHeader
+            activeCategory={activeCategory}
+            scrollContainerRef={scrollContainerRef}
+            onHeaderVisibilityChange={setHeaderHidden}
+            handleConfirm={handleConfirm}
+          />
+        </AnimatePresence>
+      )}
 
       {/* Scrollable Content */}
       <div
         ref={scrollContainerRef}
         className={`flex-grow overflow-y-auto px-1 lg:px-2 lg:pb-2 transition-transform duration-300 ease-linear ${
-          headerHidden ? 'pt-0' : 'pt-[44px] md:pt-[55px] lg:pt-[65px]'
+          ['Доторлогоо', 'Товч', 'Энгэр'].includes(activeCategory || '')
+            ? 'pt-2'
+            : headerHidden
+              ? 'pt-0'
+              : 'pt-[44px] md:pt-[55px] lg:pt-[65px]'
         }`}
       >
         {CategoryComponent && <CategoryComponent />}

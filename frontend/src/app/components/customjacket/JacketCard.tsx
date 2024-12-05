@@ -13,8 +13,6 @@ export const JacketCard: React.FC<JacketCardProps> = ({
   group,
   setActiveCategory,
 }) => {
-  console.log(group.name);
-
   return (
     <div
       className="cursor-pointer"

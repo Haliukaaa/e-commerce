@@ -15,8 +15,8 @@ export const CategoryCard: React.FC<CardProps> = ({
   title,
 }) => {
   return (
-    <div className="relative flex flex-col lg:flex-row group items-center">
-      <div className="flex-shrink-0 overflow-hidden rounded-md">
+    <div className="relative h-full flex flex-col lg:flex-row group items-center">
+      <div className=" lg:h-full md:h-[116px] overflow-hidden aspect-square h-[88px] rounded-md">
         <Image
           src={imageSrc}
           alt={imageAlt}
@@ -26,13 +26,13 @@ export const CategoryCard: React.FC<CardProps> = ({
           loading="lazy"
         />
       </div>
-      <div className="flex-grow px-4 py-2">
+      <div className="flex-grow px-4 pt-3">
         <div className="text-lg font-semibold group-hover:text-gray-400 text-gray-800">
           {title}
         </div>
       </div>
       <div>
-        <ChevronRight className="stroke-1" />
+        <ChevronRight className="hidden lg:block stroke-1" />
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 export * from './BaseStyleCard';
-export * from './CardGroup';
 export * from './CategoryCard';
 export * from './DetailCard';
+export * from './DetailCardGroup';
 export * from './FabricsHeader';
 export * from './JacketCard';
 export * from './JacketContent';
@@ -10,3 +10,4 @@ export * from './JacketPanel';
 export * from './JacketSection';
 export * from './JacketSelection';
 export * from './MenuSection';
+export * from './VariationToggleButtons';

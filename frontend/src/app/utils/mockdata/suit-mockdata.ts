@@ -96,33 +96,58 @@ export const jacket: JacketType[] = [
     name: 'Товч',
     image:
       'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/TFH01',
-    variations: [
-      {
-        name: 'Хар хүрэн',
-        price: 0,
-        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/TFH01',
-      },
-      {
-        name: 'Хар хүрэн алаг',
-        price: 0,
-        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/B09',
-      },
-      {
-        name: 'Цайвар ба хар хүрэн',
-        price: 5000,
-        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/TRH02',
-      },
-      {
-        name: 'Цагаан ба бор',
-        price: 0,
-        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/STR',
-      },
-      {
-        name: 'Цайвар саарал ба нүүрсэн саарал',
-        price: 0,
-        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/G4',
-      },
-    ],
+    variations: {
+      button: [
+        {
+          name: 'Хар хүрэн',
+          price: 0,
+          url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/TFH01',
+        },
+        {
+          name: 'Хар хүрэн алаг',
+          price: 0,
+          url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/B09',
+        },
+        {
+          name: 'Цайвар ба хар хүрэн',
+          price: 5000,
+          url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/TRH02',
+        },
+        {
+          name: 'Цагаан ба бор',
+          price: 0,
+          url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/STR',
+        },
+        {
+          name: 'Цайвар саарал ба нүүрсэн саарал',
+          price: 0,
+          url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/G4',
+        },
+      ],
+      sleeve: [
+        {
+          name: '3 дараалсан товч',
+          price: 0,
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/SB3KB1',
+          description:
+            'Эдгээр 3 дараалсан товч нь гоёмсог, хувцасны өвөрмөц чимэглэл болдог.',
+        },
+        {
+          name: '4 дараалсан товч',
+          price: 0,
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/SB4KB2',
+          description:
+            'Эдгээр 4 дараалсан товч нь гоёмсог, хувцасны өвөрмөц чимэглэл болдог.',
+        },
+        {
+          name: '3 дараалсан товч',
+          price: 0,
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/SB5KB4',
+          description:
+            'Эдгээр 5 дараалсан товч нь гоёмсог, хувцасны өвөрмөц чимэглэл болдог.',
+        },
+      ],
+    },
   },
   {
     id: 3,
@@ -211,18 +236,6 @@ export const jacket: JacketType[] = [
           name: 'Стандарт',
           price: 0,
           url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/RPLWS2',
-        },
-      ],
-      buttonhole: [
-        {
-          name: 'Уламжлалт',
-          price: 0,
-          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/BHFUNC1',
-        },
-        {
-          name: 'Гар хийцийн',
-          price: 20000,
-          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/BHMIL2',
         },
       ],
     },
