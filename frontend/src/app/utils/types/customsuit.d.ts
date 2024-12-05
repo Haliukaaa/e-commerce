@@ -20,6 +20,30 @@ export interface FabricGroup {
   images: string[];
 }
 
+interface JacketVariation {
+  name: string;
+  description?: string;
+  price?: number;
+  url?: string;
+}
+
+interface JacketType {
+  id: number;
+  name: string;
+  image: string;
+  variations:
+    | JacketVariation[]
+    | {
+        button?: JacketVariation[];
+        sleeve?: JacketVariation[];
+        type?: JacketVariation[];
+        color?: JacketVariation[];
+        lapel?: JacketVariation[];
+        width?: JacketVariation[];
+        buttonhole?: JacketVariation[];
+      };
+}
+
 export interface Product {
   id: string;
   name: string;
@@ -34,3 +58,12 @@ export interface Product {
   category?: string[];
   care?: string;
 }
+
+export type VariationKey = 'Доторлогоо' | 'Товч' | 'Энгэр';
+export type VariationType =
+  | 'type'
+  | 'color'
+  | 'button'
+  | 'sleeve'
+  | 'width'
+  | 'lapel';
