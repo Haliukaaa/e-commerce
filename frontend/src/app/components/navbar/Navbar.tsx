@@ -12,7 +12,6 @@ export const Navbar: React.FC = () => {
         <button
           type="button"
           className="p-2 text-gray-600 hover:text-gray-900 focus:outline-none"
-          aria-label="Toggle Menu"
         >
           <Menu size={24} className="stroke-1" />
         </button>
@@ -23,9 +22,10 @@ export const Navbar: React.FC = () => {
           <Image
             src="https://cdn.suitsupply.com/image/upload/suitsupply/assets/ss23/svg-icons/suitsupply-logo.svg"
             alt="Suitsupply"
-            width={120}
-            height={40}
+            width={0}
+            height={0}
             priority
+            className="w-[120px] h-[40px]"
           />
         </Link>
       </div>

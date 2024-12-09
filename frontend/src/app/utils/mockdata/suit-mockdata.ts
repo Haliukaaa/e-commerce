@@ -54,37 +54,37 @@ export const jacket: JacketType[] = [
       'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/MBN2',
     variations: [
       {
-        name: '1 товч',
+        name: '1 товчтой',
         description:
           'Хар зангиатай арга хэмжээнд тохиромжтой, бие барьсан бөгөөд сайхан оёдолтой харагдана.',
         url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/MBN1',
       },
       {
-        name: '2 товч',
+        name: '2 товчтой',
         description:
           'Стандарт 2 товч нь орчин үеийн, олон талт дүр төрхийг бий болгодог.',
         url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/MBN2',
       },
       {
-        name: '2.5 товч',
+        name: '2.5 товчтой',
         description:
-          'Энгэр дээр нэмэлт товчтой загвар нь гоёмсог, загварлаг харагдах зориулалттай.',
+          'Энгэр дээр нэмэлт товчтой загвар нь гоёмсог, загварлаг харагдуулах зориулалттай.',
         url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/MBN2.5',
       },
       {
-        name: '4 хос товч',
+        name: '4 хос товчтой',
         description:
           'Сонгодог загварыг залуу, илүү нарийн хувилбараар санал болгодог.',
         url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/MBN4DB',
       },
       {
-        name: '6 хос товч',
+        name: '6 хос товчтой',
         description:
           'Давхар товчтой сонгодог загварыг орчин үеийн хэлбэрээр илэрхийлнэ.',
         url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/MBN6DB',
       },
       {
-        name: '6 хос доор товч',
+        name: '6 хос доор товчтой',
         description:
           'Доор байрласан 6 товч нь спортлог, сонгодог хэв маягийг харуулна.',
         url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/MBNL6DB',
@@ -140,7 +140,7 @@ export const jacket: JacketType[] = [
             'Эдгээр 4 дараалсан товч нь гоёмсог, хувцасны өвөрмөц чимэглэл болдог.',
         },
         {
-          name: '3 дараалсан товч',
+          name: '5 дараалсан товч',
           price: 0,
           url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/SB5KB4',
           description:
@@ -155,7 +155,7 @@ export const jacket: JacketType[] = [
     image:
       'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/LFL1',
     variations: {
-      type: [
+      lining: [
         {
           name: 'Бүрэн доторлогоо',
           price: 0,
@@ -169,7 +169,7 @@ export const jacket: JacketType[] = [
           description: `Доторлогоо нь хүрэмний дээд хэсэг болон ханцуйнд байршдаг.`,
         },
         {
-          name: 'Эрвээхэй доторлогоо',
+          name: 'Эрвээхий доторлогоо',
           price: 10000,
           url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/LBF4',
           description:

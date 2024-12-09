@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 
 import { DetailCard } from '.';
 
@@ -8,10 +8,16 @@ import { VariationKey } from '@/app/utils/types/customsuit';
 
 interface CardGroupProps {
   category: string | null;
+  selectedIndex: number | null;
+  setSelectedIndex: React.Dispatch<React.SetStateAction<number | null>>;
+  onSelect: (category: string, option: string, index: number) => void;
 }
 
-export const DetailCardGroup: React.FC<CardGroupProps> = ({ category }) => {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+export const DetailCardGroup: React.FC<CardGroupProps> = ({
+  category,
+  selectedIndex,
+  onSelect,
+}) => {
   const { variations } = useFabric();
 
   const filteredJackets = useMemo(() => {
@@ -49,14 +55,11 @@ export const DetailCardGroup: React.FC<CardGroupProps> = ({ category }) => {
     );
   }, [category, variations]);
 
-  const handleCardSelect = (index: number) => {
-    setSelectedIndex(index);
-  };
-
   return (
     <div className="relative w-full">
       <div className="flex flex-row gap-1 md:gap-2 lg:gap-3 lg:flex-col">
         {filteredJackets.map((variation, index) => {
+          if (!category) return null;
           return (
             <DetailCard
               key={variation.url || index}
@@ -64,7 +67,7 @@ export const DetailCardGroup: React.FC<CardGroupProps> = ({ category }) => {
               title={variation.name}
               description={variation.description}
               isSelected={selectedIndex === index}
-              onSelect={() => handleCardSelect(index)}
+              onSelect={() => onSelect(category, variation.name, index)}
             />
           );
         })}

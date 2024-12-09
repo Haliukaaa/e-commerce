@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { AnimatePresence } from 'framer-motion';
 import { Check } from 'lucide-react';
@@ -8,6 +8,8 @@ import { FabricsHeader } from '../customsuit';
 import { DetailCardGroup, VariationToggleButtons } from './';
 
 import { useFabric } from '@/app/utils/context/fabricContext';
+import { jacket } from '@/app/utils/mockdata/suit-mockdata';
+import { SelectedValues } from '@/app/utils/types/customsuit';
 
 interface JacketPanelProps {
   activeCategory: string;
@@ -20,34 +22,225 @@ export const JacketPanel: React.FC<JacketPanelProps> = ({
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [headerHidden, setHeaderHidden] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [selectedValues, setSelectedValues] = useState<SelectedValues>({});
 
-  const { selectedFabric, setSelectedFabric, selectedLocalFabric } =
-    useFabric();
+  const { jacketSelection, dispatchJacketSelection } = useFabric();
+
+  const handleSelection = (
+    category: string | null,
+    option: string,
+    index: number,
+  ) => {
+    if (category) {
+      setSelectedIndex(index);
+
+      setSelectedValues((prev) => {
+        const currentSelection =
+          typeof prev[category] === 'object' && prev[category] !== null
+            ? { ...prev[category] }
+            : {};
+
+        switch (category) {
+          case 'Товч': {
+            const variations = jacket.find(
+              (j) => j.name === 'Товч',
+            )?.variations;
+
+            if (Array.isArray(variations)) {
+              const isOptionAvailable = variations.some(
+                (item) => item.name === option,
+              );
+
+              return {
+                ...prev,
+                [category]: {
+                  ...currentSelection,
+                  ...(isOptionAvailable ? { button: option } : {}),
+                },
+              };
+            } else if (variations) {
+              const isButtonOption =
+                variations.button?.some((btn) => btn.name === option) || false;
+              const isSleeveOption =
+                variations.sleeve?.some((sleeve) => sleeve.name === option) ||
+                false;
+
+              return {
+                ...prev,
+                [category]: {
+                  ...currentSelection,
+                  ...(isButtonOption ? { button: option } : {}),
+                  ...(isSleeveOption ? { sleeve: option } : {}),
+                },
+              };
+            }
+            return prev;
+          }
+
+          case 'Доторлогоо': {
+            const variations = jacket.find(
+              (j) => j.name === 'Доторлогоо',
+            )?.variations;
+
+            if (Array.isArray(variations)) {
+              const isOptionAvailable = variations.some(
+                (item) => item.name === option,
+              );
+
+              return {
+                ...prev,
+                [category]: {
+                  ...currentSelection,
+                  ...(isOptionAvailable ? { lining: option } : {}),
+                },
+              };
+            } else if (variations) {
+              const isLiningTypeOption =
+                variations.lining?.some((lining) => lining.name === option) ||
+                false;
+              const isColorOption =
+                variations.color?.some((color) => color.name === option) ||
+                false;
+
+              return {
+                ...prev,
+                [category]: {
+                  ...currentSelection,
+                  ...(isLiningTypeOption ? { lining: option } : {}),
+                  ...(isColorOption ? { color: option } : {}),
+                },
+              };
+            }
+            return prev;
+          }
+
+          case 'Энгэр':
+            {
+              const variations = jacket.find(
+                (j) => j.name === 'Энгэр',
+              )?.variations;
+
+              if (Array.isArray(variations)) {
+                const isOptionAvailable = variations.some(
+                  (item) => item.name === option,
+                );
+
+                return {
+                  ...prev,
+                  [category]: {
+                    ...currentSelection,
+                    ...(isOptionAvailable ? { lapel: option } : {}),
+                  },
+                };
+              } else if (variations) {
+                const isLapelOption =
+                  variations.lapel?.some((lapel) => lapel.name === option) ||
+                  false;
+                const isWidthOption =
+                  variations.width?.some((width) => width.name === option) ||
+                  false;
+
+                return {
+                  ...prev,
+                  [category]: {
+                    ...currentSelection,
+                    ...(isLapelOption ? { lapel: option } : {}),
+                    ...(isWidthOption ? { width: option } : {}),
+                  },
+                };
+              }
+            }
+            return prev;
+          default:
+            return {
+              ...prev,
+              [category]: option,
+            };
+        }
+      });
+    }
+  };
 
   const handleConfirm = () => {
-    if (selectedLocalFabric) {
-      setSelectedFabric({
-        name: selectedLocalFabric.name,
-        price: selectedLocalFabric.price?.toString() || '',
-        id: selectedLocalFabric.id,
-        images: selectedLocalFabric.images,
-      });
-      setActiveCategory(null);
-      return;
-    }
-    if (selectedFabric) {
-      setActiveCategory(null);
-      return;
-    }
+    Object.keys(selectedValues).forEach((category) => {
+      const option = selectedValues[category];
+
+      console.log(`Dispatching for ${category}:`, option);
+
+      if (typeof option === 'object') {
+        if (category === 'Товч') {
+          dispatchJacketSelection({
+            type: 'SET_BUTTON',
+            option: option as { button?: string; sleeve?: string },
+          });
+        } else if (category === 'Доторлогоо') {
+          dispatchJacketSelection({
+            type: 'SET_LINING',
+            option: option as { lining?: string; color?: string },
+          });
+        } else if (category === 'Энгэр') {
+          dispatchJacketSelection({
+            type: 'SET_LAPEL',
+            option: option as { lapel?: string; width?: string },
+          });
+        }
+      } else {
+        dispatchJacketSelection({
+          type: 'SET_SELECTION',
+          category,
+          option: option as string,
+        });
+      }
+    });
     setActiveCategory(null);
   };
 
+  useEffect(() => {
+    console.log(jacketSelection);
+  }, [jacketSelection]);
+
   const categoryComponents = {
-    Товчлолт: () => <DetailCardGroup category="Товчлолт" />,
-    Товч: () => <DetailCardGroup category="Товч" />,
-    Доторлогоо: () => <DetailCardGroup category="Доторлогоо" />,
-    Энгэр: () => <DetailCardGroup category="Энгэр" />,
-    Монограм: () => <DetailCardGroup category="Монограм" />,
+    Товчлолт: () => (
+      <DetailCardGroup
+        category="Товчлолт"
+        setSelectedIndex={setSelectedIndex}
+        selectedIndex={selectedIndex}
+        onSelect={handleSelection}
+      />
+    ),
+    Товч: () => (
+      <DetailCardGroup
+        category="Товч"
+        setSelectedIndex={setSelectedIndex}
+        selectedIndex={selectedIndex}
+        onSelect={handleSelection}
+      />
+    ),
+    Доторлогоо: () => (
+      <DetailCardGroup
+        category="Доторлогоо"
+        setSelectedIndex={setSelectedIndex}
+        selectedIndex={selectedIndex}
+        onSelect={handleSelection}
+      />
+    ),
+    Энгэр: () => (
+      <DetailCardGroup
+        category="Энгэр"
+        setSelectedIndex={setSelectedIndex}
+        selectedIndex={selectedIndex}
+        onSelect={handleSelection}
+      />
+    ),
+    Монограм: () => (
+      <DetailCardGroup
+        category="Монограм"
+        setSelectedIndex={setSelectedIndex}
+        selectedIndex={selectedIndex}
+        onSelect={handleSelection}
+      />
+    ),
   };
 
   const CategoryComponent =

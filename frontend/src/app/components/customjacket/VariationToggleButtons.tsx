@@ -20,7 +20,7 @@ export const VariationToggleButtons: React.FC<VariationToggleButtonsProps> = ({
     switch (categoryName) {
       case 'Доторлогоо':
         return [
-          { key: 'type', label: 'Төрөл' },
+          { key: 'lining', label: 'Төрөл' },
           { key: 'color', label: 'Өнгө' },
         ];
       case 'Товч':
@@ -40,9 +40,6 @@ export const VariationToggleButtons: React.FC<VariationToggleButtonsProps> = ({
 
   const variationOptions = getVariationOptions(category);
 
-  console.log('Variation Options:', variationOptions);
-  console.log('Category:', category);
-
   return (
     <div className="flex relative justify-center">
       <button className="block lg:hidden" onClick={handleConfirm}>
@@ -54,15 +51,14 @@ export const VariationToggleButtons: React.FC<VariationToggleButtonsProps> = ({
         <button
           key={option.key}
           onClick={() => {
-            console.log('Setting Variation:', category, option.key);
             setVariation(category as VariationKey, option.key as VariationType);
           }}
           className={`
-              px-4 my-3 py-2 rounded-full transition-colors
+              px-4 mt-1 md:my-3 py-2 rounded-full transition-colors
               ${
                 variations[category as VariationKey] === option.key
                   ? 'bg-neutral-200 font-semibold text-gray-700'
-                  : ' text-gray-500 hover:bg-gray-300'
+                  : ' text-gray-500'
               }
             `}
         >

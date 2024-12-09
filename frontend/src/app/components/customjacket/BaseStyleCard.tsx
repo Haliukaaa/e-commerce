@@ -30,7 +30,7 @@ export const BaseStyleCard: React.FC<BaseStyleCardProps> = ({
 
           <div className="flex-grow hidden lg:block">
             <div className="text-lg font-semibold text-black group-hover:text-gray-400">
-              Your Style
+              Хүрэмний загвар
             </div>
             <div className="text-sm">{styleName}</div>
           </div>

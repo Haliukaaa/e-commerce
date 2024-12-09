@@ -36,7 +36,7 @@ interface JacketType {
     | {
         button?: JacketVariation[];
         sleeve?: JacketVariation[];
-        type?: JacketVariation[];
+        lining?: JacketVariation[];
         color?: JacketVariation[];
         lapel?: JacketVariation[];
         width?: JacketVariation[];
@@ -61,9 +61,38 @@ export interface Product {
 
 export type VariationKey = 'Доторлогоо' | 'Товч' | 'Энгэр';
 export type VariationType =
-  | 'type'
+  | 'lining'
   | 'color'
   | 'button'
   | 'sleeve'
   | 'width'
   | 'lapel';
+
+export interface JacketSelection {
+  selection: {
+    Товчлолт: string;
+    Товч: {
+      button?: string;
+      sleeve?: string;
+    };
+    Доторлогоо: {
+      lining?: string;
+      color?: string;
+    };
+    Энгэр: {
+      lapel?: string;
+      width?: string;
+    };
+    Монограм: string;
+  };
+}
+
+export type SelectedValues = Record<
+  string,
+  | string
+  | { button?: string; sleeve?: string }
+  | { type?: string; color?: string }
+  | { lapel?: string; width?: string }
+>;
+
+export type CategoryType = string | Record<string, string | undefined | null>;

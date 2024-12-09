@@ -57,7 +57,6 @@ export const FabricContent: React.FC<FabricContentProps> = ({
     }
   };
 
-  // Handle backdrop click to close
   const handleBackdropClick = (event: React.MouseEvent) => {
     if (isMobile && activeProductInfo && event.target === backdropRef.current) {
       handleClose();

@@ -4,13 +4,12 @@ import { ImageSection } from '../customsuit';
 
 import { MenuSection } from './';
 
-interface JacketSectionProps {
-  style: string;
-}
-
-export const JacketSection: React.FC<JacketSectionProps> = () => {
+export const JacketSection: React.FC = () => {
   return (
-    <div className="grid grid-rows-[auto_auto] pt-11 lg:pt-[50px] grid-cols-1 lg:flex lg:flex-row h-dvh">
+    <div
+      id="tooltip-container"
+      className="grid relative grid-rows-[auto_auto] pt-11 lg:pt-[50px] grid-cols-1 lg:flex lg:flex-row h-dvh"
+    >
       {/* Left Section: Image */}
       <div className="flex-1 lg:flex-1 lg:w-[70%] xl:w-[75%]">
         <div className="h-[calc(100dvh-224px)] md:h-[calc(100dvh-294px)] lg:h-full bg-[#efefef] transition-all duration-300 overflow-hidden">

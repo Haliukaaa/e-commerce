@@ -31,7 +31,24 @@ export const FabricsPanel: React.FC<FabricsPanelProps> = ({
   } = useFabric();
 
   const handleConfirm = () => {
+    if (selectedLocalFabric) {
+      setSelectedFabric({
+        name: selectedLocalFabric.name,
+        price: selectedLocalFabric.price,
+        id: selectedLocalFabric.id,
+        images: selectedLocalFabric.images,
+      });
+      setActiveCategory(null);
+      setIsPreview(false);
+      return;
+    }
+    if (selectedFabric) {
+      setActiveCategory(null);
+      setIsPreview(false);
+      return;
+    }
     setActiveCategory(null);
+    setIsPreview(false);
   };
 
   const handleFabricSelect = (
