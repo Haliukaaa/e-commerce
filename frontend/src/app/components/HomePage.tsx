@@ -13,7 +13,7 @@ export const HomePage = () => {
       if (!selectedStyle) {
         return <JacketPage />;
       }
-      return <JacketSection style={selectedStyle} />;
+      return <JacketSection />;
     }
     return <FabricSection />;
   };

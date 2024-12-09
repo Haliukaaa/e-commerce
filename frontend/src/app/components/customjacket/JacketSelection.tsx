@@ -61,8 +61,9 @@ export const JacketSelection = () => {
           <Image
             src="https://cdn.suitsupply.com/image/upload/svg/base_style.svg"
             alt="Загвараа сонгоно уу"
-            width={24}
-            height={24}
+            width={0}
+            height={0}
+            className="w-[24px] h-[24px]"
           />
           <h1 className="font-bold text-2xl">Загвараа сонгоно уу</h1>
         </div>

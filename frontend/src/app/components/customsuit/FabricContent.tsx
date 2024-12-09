@@ -57,7 +57,6 @@ export const FabricContent: React.FC<FabricContentProps> = ({
     }
   };
 
-  // Handle backdrop click to close
   const handleBackdropClick = (event: React.MouseEvent) => {
     if (isMobile && activeProductInfo && event.target === backdropRef.current) {
       handleClose();
@@ -129,7 +128,7 @@ export const FabricContent: React.FC<FabricContentProps> = ({
               dragElastic={0.7}
               dragMomentum={false}
               onDragEnd={isMobile ? handleMobileDragEnd : undefined}
-              transition={{ type: 'tween', duration: 0.3 }}
+              transition={{ type: 'tween', duration: 0.4 }}
               onClick={(e) => e.stopPropagation()}
               className="w-full lg:w-[30%] xl:w-[25%] lg:absolute bottom-0 lg:top-[50px] lg:right-0 z-10"
             >
