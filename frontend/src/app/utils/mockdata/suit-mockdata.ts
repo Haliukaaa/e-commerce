@@ -485,7 +485,7 @@ export const waistcoat: WaistcoatType[] = [
   },
   {
     id: 2,
-    name: 'Энгэрийн загвар',
+    name: 'Энгэр',
     image:
       'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/STVS1',
     variations: [
@@ -543,7 +543,7 @@ export const waistcoat: WaistcoatType[] = [
   },
   {
     id: 4,
-    name: 'Нурууны загвар',
+    name: 'Нуруу',
     image:
       'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/BSL1',
 
@@ -566,7 +566,7 @@ export const waistcoat: WaistcoatType[] = [
   },
   {
     id: 5,
-    name: 'Доторлогооны өнгө',
+    name: 'Доторлогоо',
     image:
       'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/lining_ui_v3/1098',
     variations: [

@@ -19,7 +19,12 @@ export const CategoryCard: React.FC<CardProps> = ({
   title,
   type,
 }) => {
-  const { jacketSelection, trouserSelection, activeCategory } = useFabric();
+  const {
+    jacketSelection,
+    trouserSelection,
+    waistcoatSelection,
+    activeCategory,
+  } = useFabric();
 
   const renderSelection = (category: CategoryType): string => {
     if (!category) return '';
@@ -41,12 +46,19 @@ export const CategoryCard: React.FC<CardProps> = ({
             key as keyof typeof jacketSelection.selection
           ]
         : undefined
-      : key in trouserSelection.selection
-        ? trouserSelection.selection[
-            key as keyof typeof trouserSelection.selection
-          ]
-        : undefined;
-
+      : type === 'Trousers'
+        ? key in trouserSelection.selection
+          ? trouserSelection.selection[
+              key as keyof typeof trouserSelection.selection
+            ]
+          : undefined
+        : type === 'Waistcoat'
+          ? key in waistcoatSelection.selection
+            ? waistcoatSelection.selection[
+                key as keyof typeof waistcoatSelection.selection
+              ]
+            : undefined
+          : undefined;
   return (
     <div className="relative h-full flex flex-col lg:flex-row group items-center">
       <div className="lg:h-full md:h-[116px] md:w-[116px] overflow-hidden aspect-square h-[88px] w-[88px] rounded-md">

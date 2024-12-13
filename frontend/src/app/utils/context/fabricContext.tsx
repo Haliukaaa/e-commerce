@@ -6,7 +6,7 @@ import {
   TrouserSelection,
   VariationKey,
   VariationType,
-  WaistcoatSelection
+  WaistcoatSelection,
 } from '../types/customsuit';
 
 interface FabricContextType {
@@ -41,8 +41,8 @@ interface FabricContextType {
   dispatchJacketSelection: React.Dispatch<JacketAction>;
   trouserSelection: TrouserSelection;
   dispatchTrouserSelection: React.Dispatch<TrouserAction>;
-  // waistcoatSelection: WaistcoatSelection;
-  // dispatchWaistcoatSelection: React.Dispatch<WaistcoatAction>;
+  waistcoatSelection: WaistcoatSelection;
+  dispatchWaistcoatSelection: React.Dispatch<WaistcoatAction>;
 }
 
 const FabricContext = createContext<FabricContextType | undefined>(undefined);
@@ -79,16 +79,16 @@ const initialTrouserState: TrouserSelection = {
   },
 };
 
-// const initialWaistcoatState: WaistcoatSelection = {
-//   selection: {
-//     Товчлолт: "4 товчтой",
-//     'Энгэрийн загвар': "V хэлбэрийн",
-//     Халаас: "Дотор оруулгатай",
-//     'Нурууны загвар': "Торгон дотортой",
-//     'Доторлогооны өнгө': "Цагаан",
-//     Товч: "Хар хүрэн",
-//   },
-// };
+const initialWaistcoatState: WaistcoatSelection = {
+  selection: {
+    Товчлолт: '4 товчтой',
+    Энгэр: 'V хэлбэрийн',
+    Халаас: 'Дотор оруулгатай',
+    Нуруу: 'Торгон дотортой',
+    Доторлогоо: 'Цагаан',
+    Товч: 'Хар хүрэн',
+  },
+};
 
 type JacketAction =
   | { type: 'SET_SELECTION'; category: string; option: string }
@@ -99,6 +99,12 @@ type JacketAction =
 type TrouserAction =
   | { type: 'SET_SELECTION'; category: string; option: string }
   | { type: 'SET_WAISTBAND'; option: { waistband?: string; details?: string } };
+
+type WaistcoatAction = {
+  type: 'SET_SELECTION';
+  category: string;
+  option: string;
+};
 
 const jacketReducer = (
   state: JacketSelection,
@@ -153,14 +159,30 @@ const trouserReducer = (
           [action.category]: action.option,
         },
       };
-  }
-  switch (action.type) {
     case 'SET_WAISTBAND':
       return {
         ...state,
         selection: {
           ...state.selection,
           Бүсэлхий: { ...state.selection.Бүсэлхий, ...action.option },
+        },
+      };
+    default:
+      return state;
+  }
+};
+
+const waistcoatReducer = (
+  state: WaistcoatSelection,
+  action: WaistcoatAction,
+): WaistcoatSelection => {
+  switch (action.type) {
+    case 'SET_SELECTION':
+      return {
+        ...state,
+        selection: {
+          ...state.selection,
+          [action.category]: action.option,
         },
       };
   }
@@ -210,6 +232,11 @@ export const FabricProvider: React.FC<{ children: React.ReactNode }> = ({
     initialTrouserState,
   );
 
+  const [waistcoatSelection, dispatchWaistcoatSelection] = useReducer(
+    waistcoatReducer,
+    initialWaistcoatState,
+  );
+
   const setVariation = (category: VariationKey, variation: VariationType) => {
     setVariations((prev) => ({ ...prev, [category]: variation }));
   };
@@ -237,6 +264,8 @@ export const FabricProvider: React.FC<{ children: React.ReactNode }> = ({
         dispatchJacketSelection,
         trouserSelection,
         dispatchTrouserSelection,
+        waistcoatSelection,
+        dispatchWaistcoatSelection,
         activeCategory,
         setActiveCategory,
       }}

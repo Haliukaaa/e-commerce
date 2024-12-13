@@ -7,7 +7,6 @@ import { FabricsHeader } from '../customsuit';
 import { DetailCardGroup } from '../general';
 
 import { useFabric } from '@/app/utils/context/fabricContext';
-import { jacket } from '@/app/utils/mockdata/suit-mockdata';
 import { SelectedValues } from '@/app/utils/types/customsuit';
 
 interface WaistcoatPanelProps {
@@ -24,7 +23,7 @@ export const WaistcoatPanel: React.FC<WaistcoatPanelProps> = ({
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [selectedValues, setSelectedValues] = useState<SelectedValues>({});
 
-  const { dispatchJacketSelection } = useFabric();
+  const { dispatchWaistcoatSelection } = useFabric();
 
   const handleSelection = (
     category: string | null,
@@ -35,128 +34,10 @@ export const WaistcoatPanel: React.FC<WaistcoatPanelProps> = ({
       setSelectedIndex(index);
 
       setSelectedValues((prev) => {
-        const currentSelection =
-          typeof prev[category] === 'object' && prev[category] !== null
-            ? { ...prev[category] }
-            : {};
-
-        switch (category) {
-          case 'Товч': {
-            const variations = jacket.find(
-              (j) => j.name === 'Товч',
-            )?.variations;
-
-            if (Array.isArray(variations)) {
-              const isOptionAvailable = variations.some(
-                (item) => item.name === option,
-              );
-
-              return {
-                ...prev,
-                [category]: {
-                  ...currentSelection,
-                  ...(isOptionAvailable ? { button: option } : {}),
-                },
-              };
-            } else if (variations) {
-              const isButtonOption =
-                variations.button?.some((btn) => btn.name === option) || false;
-              const isSleeveOption =
-                variations.sleeve?.some((sleeve) => sleeve.name === option) ||
-                false;
-
-              return {
-                ...prev,
-                [category]: {
-                  ...currentSelection,
-                  ...(isButtonOption ? { button: option } : {}),
-                  ...(isSleeveOption ? { sleeve: option } : {}),
-                },
-              };
-            }
-            return prev;
-          }
-
-          case 'Доторлогоо': {
-            const variations = jacket.find(
-              (j) => j.name === 'Доторлогоо',
-            )?.variations;
-
-            if (Array.isArray(variations)) {
-              const isOptionAvailable = variations.some(
-                (item) => item.name === option,
-              );
-
-              return {
-                ...prev,
-                [category]: {
-                  ...currentSelection,
-                  ...(isOptionAvailable ? { lining: option } : {}),
-                },
-              };
-            } else if (variations) {
-              const isLiningTypeOption =
-                variations.lining?.some((lining) => lining.name === option) ||
-                false;
-              const isColorOption =
-                variations.color?.some((color) => color.name === option) ||
-                false;
-
-              return {
-                ...prev,
-                [category]: {
-                  ...currentSelection,
-                  ...(isLiningTypeOption ? { lining: option } : {}),
-                  ...(isColorOption ? { color: option } : {}),
-                },
-              };
-            }
-            return prev;
-          }
-
-          case 'Энгэр':
-            {
-              const variations = jacket.find(
-                (j) => j.name === 'Энгэр',
-              )?.variations;
-
-              if (Array.isArray(variations)) {
-                const isOptionAvailable = variations.some(
-                  (item) => item.name === option,
-                );
-
-                return {
-                  ...prev,
-                  [category]: {
-                    ...currentSelection,
-                    ...(isOptionAvailable ? { lapel: option } : {}),
-                  },
-                };
-              } else if (variations) {
-                const isLapelOption =
-                  variations.lapel?.some((lapel) => lapel.name === option) ||
-                  false;
-                const isWidthOption =
-                  variations.width?.some((width) => width.name === option) ||
-                  false;
-
-                return {
-                  ...prev,
-                  [category]: {
-                    ...currentSelection,
-                    ...(isLapelOption ? { lapel: option } : {}),
-                    ...(isWidthOption ? { width: option } : {}),
-                  },
-                };
-              }
-            }
-            return prev;
-          default:
-            return {
-              ...prev,
-              [category]: option,
-            };
-        }
+        return {
+          ...prev,
+          [category]: option,
+        };
       });
     }
   };
@@ -165,30 +46,11 @@ export const WaistcoatPanel: React.FC<WaistcoatPanelProps> = ({
     Object.keys(selectedValues).forEach((category) => {
       const option = selectedValues[category];
 
-      if (typeof option === 'object') {
-        if (category === 'Товч') {
-          dispatchJacketSelection({
-            type: 'SET_BUTTON',
-            option: option as { button?: string; sleeve?: string },
-          });
-        } else if (category === 'Доторлогоо') {
-          dispatchJacketSelection({
-            type: 'SET_LINING',
-            option: option as { lining?: string; color?: string },
-          });
-        } else if (category === 'Энгэр') {
-          dispatchJacketSelection({
-            type: 'SET_LAPEL',
-            option: option as { lapel?: string; width?: string },
-          });
-        }
-      } else {
-        dispatchJacketSelection({
-          type: 'SET_SELECTION',
-          category,
-          option: option as string,
-        });
-      }
+      dispatchWaistcoatSelection({
+        type: 'SET_SELECTION',
+        category,
+        option: option as string,
+      });
     });
     setActiveCategory(null);
   };
@@ -202,9 +64,9 @@ export const WaistcoatPanel: React.FC<WaistcoatPanelProps> = ({
         onSelect={handleSelection}
       />
     ),
-    'Энгэрийн загвар': () => (
+    Энгэр: () => (
       <DetailCardGroup
-        category="Энгэрийн загвар"
+        category="Энгэр"
         setSelectedIndex={setSelectedIndex}
         selectedIndex={selectedIndex}
         onSelect={handleSelection}
@@ -218,17 +80,17 @@ export const WaistcoatPanel: React.FC<WaistcoatPanelProps> = ({
         onSelect={handleSelection}
       />
     ),
-    'Нурууны загвар': () => (
+    Нуруу: () => (
       <DetailCardGroup
-        category="Нурууны загвар"
+        category="Нуруу"
         setSelectedIndex={setSelectedIndex}
         selectedIndex={selectedIndex}
         onSelect={handleSelection}
       />
     ),
-    'Доторлогооны өнгө': () => (
+    Доторлогоо: () => (
       <DetailCardGroup
-        category="Доторлогооны өнгө"
+        category="Доторлогоо"
         setSelectedIndex={setSelectedIndex}
         selectedIndex={selectedIndex}
         onSelect={handleSelection}

@@ -124,10 +124,10 @@ export interface TrouserSelection {
 export interface WaistcoatSelection {
   selection: {
     Товчлолт: string;
-    'Энгэрийн загвар': string;
+    Энгэр: string;
     Халаас: string;
-    'Нурууны загвар': string;
-    'Доторлогооны өнгө': string;
+    Нуруу: string;
+    Доторлогоо: string;
     Товч: string;
   };
 }
