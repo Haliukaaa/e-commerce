@@ -9,6 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      scrollbarGutter: {
+        stable: 'stable',
+        always: 'always',
+      },
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',

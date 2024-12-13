@@ -20,7 +20,7 @@ export interface FabricGroup {
   images: string[];
 }
 
-interface JacketVariation {
+interface Variation {
   name: string;
   description?: string;
   price?: number;
@@ -32,16 +32,35 @@ interface JacketType {
   name: string;
   image: string;
   variations:
-    | JacketVariation[]
+    | Variation[]
     | {
-        button?: JacketVariation[];
-        sleeve?: JacketVariation[];
-        lining?: JacketVariation[];
-        color?: JacketVariation[];
-        lapel?: JacketVariation[];
-        width?: JacketVariation[];
-        buttonhole?: JacketVariation[];
+        button?: Variation[];
+        sleeve?: Variation[];
+        lining?: Variation[];
+        color?: Variation[];
+        lapel?: Variation[];
+        width?: Variation[];
+        buttonhole?: Variation[];
       };
+}
+
+export interface TrouserType {
+  id: number;
+  name: string;
+  image: string;
+  variations:
+    | Variation[]
+    | {
+        waistband?: Variation[];
+        details?: Variation[];
+      };
+}
+
+export interface WaistcoatType {
+  id: number;
+  name: string;
+  image: string;
+  variations: Variation[];
 }
 
 export interface Product {
@@ -59,14 +78,16 @@ export interface Product {
   care?: string;
 }
 
-export type VariationKey = 'Доторлогоо' | 'Товч' | 'Энгэр';
+export type VariationKey = 'Доторлогоо' | 'Товч' | 'Энгэр' | 'Бүсэлхий';
 export type VariationType =
   | 'lining'
   | 'color'
   | 'button'
   | 'sleeve'
   | 'width'
-  | 'lapel';
+  | 'lapel'
+  | 'waistband'
+  | 'details';
 
 export interface JacketSelection {
   selection: {
@@ -84,6 +105,30 @@ export interface JacketSelection {
       width?: string;
     };
     Монограм: string;
+  };
+}
+
+export interface TrouserSelection {
+  selection: {
+    Бүсэлхий: {
+      waistband?: string;
+      details?: string;
+    };
+    Халаас: string;
+    Нугалам: string;
+    Шуумаг: string;
+    Товч: string;
+  };
+}
+
+export interface WaistcoatSelection {
+  selection: {
+    Товчлолт: string;
+    'Энгэрийн загвар': string;
+    Халаас: string;
+    'Нурууны загвар': string;
+    'Доторлогооны өнгө': string;
+    Товч: string;
   };
 }
 

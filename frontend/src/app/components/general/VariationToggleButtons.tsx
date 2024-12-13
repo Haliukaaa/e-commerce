@@ -6,7 +6,7 @@ import { useFabric } from '@/app/utils/context/fabricContext';
 import { VariationKey, VariationType } from '@/app/utils/types/customsuit';
 
 interface VariationToggleButtonsProps {
-  category: string;
+  category: string | null;
   handleConfirm: () => void;
 }
 
@@ -16,7 +16,7 @@ export const VariationToggleButtons: React.FC<VariationToggleButtonsProps> = ({
 }) => {
   const { variations, setVariation } = useFabric();
 
-  const getVariationOptions = (categoryName: string) => {
+  const getVariationOptions = (categoryName: string | null) => {
     switch (categoryName) {
       case 'Доторлогоо':
         return [
@@ -32,6 +32,11 @@ export const VariationToggleButtons: React.FC<VariationToggleButtonsProps> = ({
         return [
           { key: 'lapel', label: 'Энгэр' },
           { key: 'width', label: 'Өргөн' },
+        ];
+      case 'Бүсэлхий':
+        return [
+          { key: 'waistband', label: 'Бүсэлхий' },
+          { key: 'details', label: 'Деталь' },
         ];
       default:
         return [];

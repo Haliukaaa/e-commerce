@@ -1,4 +1,10 @@
-import { FabricGroup, JacketType, Product } from '../types/customsuit';
+import {
+  FabricGroup,
+  JacketType,
+  Product,
+  TrouserType,
+  WaistcoatType,
+} from '../types/customsuit';
 export const fabricGroups: FabricGroup[] = [
   {
     id: 1,
@@ -255,6 +261,377 @@ export const jacket: JacketType[] = [
         name: 'Энгэрийн доод талд',
         price: 0,
         url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/MOL2',
+      },
+    ],
+  },
+];
+
+export const trousers: TrouserType[] = [
+  {
+    id: 1,
+    name: 'Бүсэлхий',
+    image:
+      'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/WBBR3',
+    variations: {
+      waistband: [
+        {
+          name: 'Стандарт товчтой',
+          description: 'Ил товчтой сонгодог, шулуун бүсэлхийн бүс.',
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/WBBR7',
+        },
+        {
+          name: 'Стандарт далд товчтой',
+          description: 'Дөрвөлжин далд, ганц далд товчтой сонгодог загвар.',
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/WBWA6',
+        },
+        {
+          name: 'Хажуугийн резинтэй',
+          description: 'Тал сунадаг резин болон уяатай загвар',
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/WBAPES10',
+        },
+      ],
+      details: [
+        {
+          name: 'Бүсний гогцоотой',
+          description: 'Сонгодог, бүстэй болон бүсгүйгээр өмсөхөд тохиромжтой.',
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/WBBL1',
+        },
+        {
+          name: 'Хажуугийн тохируулагч',
+          description:
+            'Энэ загвар нь бүсэлхийн хажуу талд барлалтай, арын хэсэгтээ уртассан давуун чимэглэлтэй.',
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/WBLSA5',
+        },
+        {
+          name: 'Далавчтай тохируулагч',
+          description: `Энэхүү загвар нь бүсэлхийн хажуу талд байрлан, арын хэсэгтээ уртассан чимэглэлтэй.`,
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/WBWSA6',
+        },
+        {
+          name: 'Хоосон',
+          description:
+            'Цэвэр, минималист өнгөлгөө өгөхийн тулд хажуугийн тохируулагч эсвэл бүсний гогцоо байхгүй',
+          url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/WBNO3',
+        },
+      ],
+    },
+  },
+  {
+    id: 2,
+    name: 'Халаас',
+    image:
+      'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/FPSL1',
+    variations: [
+      {
+        name: 'Налуу',
+        price: 0,
+        description:
+          'Хамгийн түгээмэл хэв маяг, налуу халаас нь энгийн болон албан ёсны үйл явдлуудад хангалттай уян хатан байдаг.',
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/FPSL1',
+      },
+      {
+        name: 'Дотор оруулгатай',
+        price: 0,
+        description:
+          'Албан ёсны, зөвхөн гоо зүйн шинж чанартай халааснууд нь даавуунд зүсэгдсэн нарийн зүссэн зүсэлтээр тодорхойлогддог.',
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/FPJ2',
+      },
+      {
+        name: 'Нугаламын дагуу',
+        price: 0,
+        description:
+          'Хажуугийн оёдолд халаас суурилуулсан. Тэд цэвэрхэн, оновчтой дүрсийг өгдөг.',
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/FPSE3',
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: 'Нугалам',
+    image:
+      'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/PLS2',
+    variations: [
+      {
+        name: 'Байхгүй',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/PLNO1',
+        description: `Хавтгай нүүртэй гэгддэг хуниасгүй өмд нь хөлний хажууд хэвтэх нь нямбай, уян хатан байдлыг бий болгодог.`,
+      },
+      {
+        name: 'Стандарт 1 нугаламтай',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/PLS2',
+        description: 'Стандарт дан атираа нь хажуугийн давхарга руу нээгдэнэ.',
+      },
+      {
+        name: 'Стандарт 2 нугаламтай',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/PLD3',
+        description:
+          'Давхар стандарт атираа нь хажуугийн давхарга руу нээгдэнэ.',
+      },
+      {
+        name: 'Урагш 1 нугаламтай',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/PLRS4',
+        description: 'Урд талын дан атираа хонгил руу нээнэ.',
+      },
+      {
+        name: 'Урагш 2 нугаламтай',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/PLRD5',
+        description: 'Давхар урагш атираа нь хонгил руу нээнэ.',
+      },
+    ],
+  },
+  {
+    id: 4,
+    name: 'Шуумаг',
+    image:
+      'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/THFT5cm3',
+
+    variations: [
+      {
+        name: 'Оёогүй',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/THFUF4',
+        description:
+          'Дуусаагүй зах нь 11 сантиметр нэмэлт даавууг санал болгодог бөгөөд энэ нь өмднийхөө хэв маягийг дуусгах боломжийг танд олгоно.',
+      },
+      {
+        name: 'Цэвэрхэн оёдолтой',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/THFP1',
+        description:
+          'Эгжээтэй өмд нь өмдний хөлийг дотор нь нугалж, доод даавууг цэвэрхэн болгодог.',
+      },
+      {
+        name: '4 см нугалсан',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/THFT4cm2',
+        description:
+          '4 см-ийн ханцуйвч нь оймсыг илүү харуулж, өндрийг хуурмаг болгож, илүү сайхан хөшигний жин нэмдэг.',
+      },
+      {
+        name: '5 см нугалсан',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/THFT5cm3',
+        description:
+          'Тод 5 см-ийн ханцуйвч нь илүү оймс эсвэл шагайг харуулж, өндрийн хуурмаг байдлыг өгч, илүү сайхан хөшигний жин нэмдэг.',
+      },
+    ],
+  },
+  {
+    id: 5,
+    name: 'Товч',
+    image:
+      'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/TFH01',
+    variations: [
+      {
+        name: 'Хар хүрэн',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/TFH01',
+      },
+      {
+        name: 'Хар хүрэн алаг',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/B09',
+      },
+      {
+        name: 'Цайвар ба хар хүрэн',
+        price: 5000,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/TRH02',
+      },
+      {
+        name: 'Цагаан ба бор',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/STR',
+      },
+      {
+        name: 'Цайвар саарал ба нүүрсэн саарал',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/G4',
+      },
+    ],
+  },
+];
+
+export const waistcoat: WaistcoatType[] = [
+  {
+    id: 1,
+    name: 'Товчлолт',
+    image:
+      'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/CSB5BN2',
+    variations: [
+      {
+        name: '4 товчтой',
+        description:
+          'This classic single-breasted waistcoat is crafted with 4 buttons.',
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/CSB4BN1',
+      },
+      {
+        name: '5 товчтой',
+        description:
+          'This classic single-breasted waistcoat is crafted with 5 buttons.',
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/CSB5BN2',
+      },
+      {
+        name: '6 товчтой',
+        description:
+          'This classic single-breasted waistcoat is crafted with 6 buttons.',
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/CSB6BN3',
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: 'Энгэрийн загвар',
+    image:
+      'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/STVS1',
+    variations: [
+      {
+        name: 'V хэлбэрийн',
+        price: 0,
+        description:
+          'A common style for casual layering, without lapels for a clean finish.',
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/STVS1',
+      },
+      {
+        name: 'Ердийн энгэртэй',
+        price: 0,
+        description:
+          'For a versatile styling accent that add a fuller look to single-breasted waistcoats.',
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/STNL2',
+      },
+      {
+        name: 'Өнцөгтэй энгэртэй',
+        price: 0,
+        description:
+          'Classic and refined, peak lapels bring a touch of timeless elegance.',
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/STPL3',
+      },
+      {
+        name: 'U хэлбэрийн',
+        price: 0,
+        description:
+          'A formal pick, featuring a deep, rounded neckline and a collar with no lapel.',
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/STUU1',
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: 'Халаас',
+    image:
+      'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/SPJP3',
+    variations: [
+      {
+        name: 'Ил байрлалтай',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/SPSP2',
+        description:
+          'Straight pockets are a common style featuring a pocket affixed to the inside of a lined garment.',
+      },
+      {
+        name: 'Дотор оруулгатай',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/SPJP3',
+        description:
+          'Formal & exclusively aesthetic, jetted pockets are defined by a fine trimmed slit cut into the fabric.',
+      },
+    ],
+  },
+  {
+    id: 4,
+    name: 'Нурууны загвар',
+    image:
+      'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/BSL1',
+
+    variations: [
+      {
+        name: 'Торгон дотортой',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/BSL1',
+        description:
+          'This more formal style of waistcoat features a silk-lined back and is usually part of a 3-piece suit.',
+      },
+      {
+        name: 'Даавуун дотортой',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/suitconfig/S854.601-9798/Fabricthumbnail/BSF2',
+        description:
+          'This more casual style of waistcoat features a fabric-lined back and is perfect to wear as a separate.',
+      },
+    ],
+  },
+  {
+    id: 5,
+    name: 'Доторлогооны өнгө',
+    image:
+      'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/lining_ui_v3/1098',
+    variations: [
+      {
+        name: 'Цагаан',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/lining_ui_v3/1098',
+      },
+      {
+        name: 'Бэйж',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/lining_ui_v3/1106',
+      },
+      {
+        name: 'Цайвар бор',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/lining_ui_v3/1107',
+      },
+      {
+        name: 'Цайвар саарал',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/lining_ui_v3/3220',
+      },
+      {
+        name: 'Гүн хөх',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/lining_ui_v3/9680',
+      },
+      {
+        name: 'Хар',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/lining_ui_v3/100',
+      },
+    ],
+  },
+  {
+    id: 5,
+    name: 'Товч',
+    image:
+      'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/TFH01',
+    variations: [
+      {
+        name: 'Хар хүрэн',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/TFH01',
+      },
+      {
+        name: 'Хар хүрэн алаг',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/B09',
+      },
+      {
+        name: 'Цайвар ба хар хүрэн',
+        price: 5000,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/TRH02',
+      },
+      {
+        name: 'Цагаан ба бор',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/STR',
+      },
+      {
+        name: 'Цайвар саарал ба нүүрсэн саарал',
+        price: 0,
+        url: 'https://cdn.suitsupply.com/image/upload/custommade/thumbs2/buttons_v2/G4',
       },
     ],
   },

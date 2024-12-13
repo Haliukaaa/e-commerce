@@ -3,14 +3,21 @@ import React from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { JacketCard, JacketPanel } from './';
+import { WaistcoatPanel } from '../waistcoat';
 
-import { jacket } from '@/app/utils/mockdata/suit-mockdata';
+import { Card, JacketPanel, TrousersPanel } from '.';
+
+import { useFabric } from '@/app/utils/context/fabricContext';
+import {
+  jacket,
+  trousers,
+  waistcoat,
+} from '@/app/utils/mockdata/suit-mockdata';
 
 const pageTransition = {
   type: 'tween',
   ease: 'anticipate',
-  duration: 0.4,
+  duration: 0.5,
 };
 
 const mobileVariants = {
@@ -25,29 +32,65 @@ const desktopVariants = {
   exit: { x: '100%', opacity: 0 },
 };
 
-interface JacketContentProps {
+interface ContentProps {
   activeCategory: string | null;
   setActiveCategory: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-export const JacketContent: React.FC<JacketContentProps> = ({
+export const Content: React.FC<ContentProps> = ({
   activeCategory,
   setActiveCategory,
 }) => {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+  const { activeSection } = useFabric();
+
+  const sectionData =
+    activeSection === 'Jacket'
+      ? jacket
+      : activeSection === 'Trousers'
+        ? trousers
+        : waistcoat;
+
+  const renderPanel = () => {
+    switch (activeSection) {
+      case 'Jacket':
+        return (
+          <JacketPanel
+            activeCategory={activeCategory}
+            setActiveCategory={setActiveCategory}
+          />
+        );
+      case 'Trousers':
+        return (
+          <TrousersPanel
+            activeCategory={activeCategory}
+            setActiveCategory={setActiveCategory}
+          />
+        );
+      case 'Waistcoat':
+        return (
+          <WaistcoatPanel
+            activeCategory={activeCategory}
+            setActiveCategory={setActiveCategory}
+          />
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="relative overflow-x-auto lg:overflow-x-hidden overflow-y-hidden lg:overflow-y-auto flex lg:items-center h-full lg:block">
       <AnimatePresence mode="wait">
         {!activeCategory ? (
           <motion.div
-            key="jacket-groups"
+            key={`${activeSection}-groups`}
             {...(isMobile ? mobileVariants : desktopVariants)}
             transition={pageTransition}
             className="space-x-3 flex flex-row lg:flex-col lg:space-x-0 lg:space-y-3"
           >
-            {jacket.map((group) => (
-              <JacketCard
+            {sectionData.map((group) => (
+              <Card
                 key={group.id}
                 group={group}
                 setActiveCategory={setActiveCategory}
@@ -61,15 +104,10 @@ export const JacketContent: React.FC<JacketContentProps> = ({
             transition={pageTransition}
             className="fixed h-[180px] md:h-[244px] lg:h-auto bottom-0 lg:top-[49px] right-0 w-full lg:w-[30%] xl:w-[25%] bg-white z-20 overflow-hidden"
           >
-            <JacketPanel
-              activeCategory={activeCategory}
-              setActiveCategory={setActiveCategory}
-            />
+            {renderPanel()}
           </motion.div>
         )}
       </AnimatePresence>
     </div>
   );
 };
-
-export default JacketContent;

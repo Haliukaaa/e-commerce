@@ -2,7 +2,15 @@ import React from 'react';
 
 const categories = ['Fabric', 'Jacket', 'Trousers', 'Waistcoat'];
 
-export const CategoryButton = ({activeSection, setActiveSection}) => {
+interface CategoryButtonProps {
+  activeSection: string;
+  setActiveSection: (section: string) => void;
+}
+
+export const CategoryButton: React.FC<CategoryButtonProps> = ({
+  activeSection,
+  setActiveSection,
+}) => {
   return (
     <div className="flex justify-center pt-2 lg:py-2 bg-white lg:border-b sticky top-0 z-10">
       {categories.map((category) => (

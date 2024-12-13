@@ -64,7 +64,7 @@ export const DetailCard: React.FC<CardProps> = ({
       >
         <div
           className={`md:w-[116px] md:h-[116px] w-[88px] h-[88px] aspect-square relative
-          rounded-[5px] overflow-hidden border-2 border-gray-500 border-opacity-0
+          rounded-[5px] overflow-hidden lg:w-1/3 border-2 border-gray-500 border-opacity-0
           ${
             isSelected
               ? 'border-2 border-opacity-100 ring-4 ring-gray-300 border-gray-500 lg:border-opacity-0 lg:ring-opacity-0'
@@ -82,7 +82,7 @@ export const DetailCard: React.FC<CardProps> = ({
             </div>
           </div>
         </div>
-        <div className="w-full lg:w-2/3">
+        <div className="w-full lg:w-2/3 overflow-hidden">
           <div className="lg:text-lg text-center lg:text-start lg:font-semibold text-base text-gray-800 max-w-[80px] truncate lg:max-w-full md:max-w-[116px]">
             {title}
           </div>

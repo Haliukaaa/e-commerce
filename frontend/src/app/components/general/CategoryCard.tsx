@@ -10,14 +10,16 @@ interface CardProps {
   imageSrc: string;
   imageAlt?: string;
   title: string;
+  type: string | null;
 }
 
 export const CategoryCard: React.FC<CardProps> = ({
   imageSrc,
   imageAlt = '',
   title,
+  type,
 }) => {
-  const { jacketSelection, activeCategory } = useFabric();
+  const { jacketSelection, trouserSelection, activeCategory } = useFabric();
 
   const renderSelection = (category: CategoryType): string => {
     if (!category) return '';
@@ -30,14 +32,20 @@ export const CategoryCard: React.FC<CardProps> = ({
     return firstValue || '';
   };
 
-  type JacketSelectionKeys = keyof typeof jacketSelection.selection;
-
   const key = activeCategory || (title.replace(/\s+/g, '') as string);
 
   const selectionToRender =
-    key in jacketSelection.selection
-      ? jacketSelection.selection[key as JacketSelectionKeys]
-      : undefined;
+    type === 'Jacket'
+      ? key in jacketSelection.selection
+        ? jacketSelection.selection[
+            key as keyof typeof jacketSelection.selection
+          ]
+        : undefined
+      : key in trouserSelection.selection
+        ? trouserSelection.selection[
+            key as keyof typeof trouserSelection.selection
+          ]
+        : undefined;
 
   return (
     <div className="relative h-full flex flex-col lg:flex-row group items-center">
@@ -47,7 +55,7 @@ export const CategoryCard: React.FC<CardProps> = ({
           alt={imageAlt}
           width={116}
           height={116}
-          className="object-cover"
+          className="object-cover h-full"
           loading="lazy"
         />
       </div>

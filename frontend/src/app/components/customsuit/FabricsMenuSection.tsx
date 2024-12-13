@@ -1,14 +1,14 @@
 'use client';
 import React, { useState } from 'react';
 
-import { CategoryButton } from '../general/';
+import { CategoryButton } from '../general';
 
-import { FabricContent } from './';
+import { FabricContent } from '.';
 
 import { useFabric } from '@/app/utils/context/fabricContext';
 import { fabricGroups } from '@/app/utils/mockdata/suit-mockdata';
 
-export const MenuSection: React.FC = () => {
+export const FabricsMenuSection: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const { activeSection, setActiveSection } = useFabric();
 
@@ -38,5 +38,3 @@ export const MenuSection: React.FC = () => {
     </div>
   );
 };
-
-export default MenuSection;

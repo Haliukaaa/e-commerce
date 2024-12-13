@@ -1,13 +1,16 @@
 'use client';
 import React from 'react';
 
-import { CategoryButton } from '../general';
-
-import { BaseStyleCard, JacketContent } from './';
+import { Content } from './';
+import { BaseStyleCard, CategoryButton } from './';
 
 import { useFabric } from '@/app/utils/context/fabricContext';
 
-export const MenuSection: React.FC = () => {
+interface MenuSectionProps {
+  clothing: 'Jacket' | 'Trousers' | 'Waistcoat';
+}
+
+export const MenuSection: React.FC<MenuSectionProps> = ({ clothing }) => {
   const {
     activeSection,
     setActiveSection,
@@ -16,22 +19,30 @@ export const MenuSection: React.FC = () => {
     activeCategory,
     setActiveCategory,
   } = useFabric();
+
   const onEdit = () => {
-    setSelectedStyle(null);
+    console.log(clothing);
+
+    setSelectedStyle((prev) => ({
+      ...prev,
+      [clothing]: null,
+    }));
   };
+
   return (
     <div className="flex flex-col h-full">
-      {/* Category Navigation Buttons */}
       <div>
         <CategoryButton
           activeSection={activeSection}
           setActiveSection={setActiveSection}
         />
-
-        {/* Content Area */}
         <div className="p-2 md:p-4 w-full h-full flex flex-row lg:flex-col gap-3">
-          <BaseStyleCard styleName={selectedStyle} onEdit={onEdit} />
-          <JacketContent
+          <BaseStyleCard
+            styleName={selectedStyle}
+            clothing={clothing}
+            onEdit={onEdit}
+          />
+          <Content
             activeCategory={activeCategory}
             setActiveCategory={setActiveCategory}
           />
@@ -40,5 +51,3 @@ export const MenuSection: React.FC = () => {
     </div>
   );
 };
-
-export default MenuSection;

@@ -1,22 +1,21 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { AnimatePresence } from 'framer-motion';
 import { Check } from 'lucide-react';
 
 import { FabricsHeader } from '../customsuit';
-
-import { DetailCardGroup, VariationToggleButtons } from './';
+import { DetailCardGroup } from '../general';
 
 import { useFabric } from '@/app/utils/context/fabricContext';
 import { jacket } from '@/app/utils/mockdata/suit-mockdata';
 import { SelectedValues } from '@/app/utils/types/customsuit';
 
-interface JacketPanelProps {
-  activeCategory: string;
+interface WaistcoatPanelProps {
+  activeCategory: string | null;
   setActiveCategory: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-export const JacketPanel: React.FC<JacketPanelProps> = ({
+export const WaistcoatPanel: React.FC<WaistcoatPanelProps> = ({
   activeCategory,
   setActiveCategory,
 }) => {
@@ -25,7 +24,7 @@ export const JacketPanel: React.FC<JacketPanelProps> = ({
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [selectedValues, setSelectedValues] = useState<SelectedValues>({});
 
-  const { jacketSelection, dispatchJacketSelection } = useFabric();
+  const { dispatchJacketSelection } = useFabric();
 
   const handleSelection = (
     category: string | null,
@@ -166,8 +165,6 @@ export const JacketPanel: React.FC<JacketPanelProps> = ({
     Object.keys(selectedValues).forEach((category) => {
       const option = selectedValues[category];
 
-      console.log(`Dispatching for ${category}:`, option);
-
       if (typeof option === 'object') {
         if (category === 'Товч') {
           dispatchJacketSelection({
@@ -196,14 +193,42 @@ export const JacketPanel: React.FC<JacketPanelProps> = ({
     setActiveCategory(null);
   };
 
-  useEffect(() => {
-    console.log(jacketSelection);
-  }, [jacketSelection]);
-
   const categoryComponents = {
     Товчлолт: () => (
       <DetailCardGroup
         category="Товчлолт"
+        setSelectedIndex={setSelectedIndex}
+        selectedIndex={selectedIndex}
+        onSelect={handleSelection}
+      />
+    ),
+    'Энгэрийн загвар': () => (
+      <DetailCardGroup
+        category="Энгэрийн загвар"
+        setSelectedIndex={setSelectedIndex}
+        selectedIndex={selectedIndex}
+        onSelect={handleSelection}
+      />
+    ),
+    Халаас: () => (
+      <DetailCardGroup
+        category="Халаас"
+        setSelectedIndex={setSelectedIndex}
+        selectedIndex={selectedIndex}
+        onSelect={handleSelection}
+      />
+    ),
+    'Нурууны загвар': () => (
+      <DetailCardGroup
+        category="Нурууны загвар"
+        setSelectedIndex={setSelectedIndex}
+        selectedIndex={selectedIndex}
+        onSelect={handleSelection}
+      />
+    ),
+    'Доторлогооны өнгө': () => (
+      <DetailCardGroup
+        category="Доторлогооны өнгө"
         setSelectedIndex={setSelectedIndex}
         selectedIndex={selectedIndex}
         onSelect={handleSelection}
@@ -217,30 +242,6 @@ export const JacketPanel: React.FC<JacketPanelProps> = ({
         onSelect={handleSelection}
       />
     ),
-    Доторлогоо: () => (
-      <DetailCardGroup
-        category="Доторлогоо"
-        setSelectedIndex={setSelectedIndex}
-        selectedIndex={selectedIndex}
-        onSelect={handleSelection}
-      />
-    ),
-    Энгэр: () => (
-      <DetailCardGroup
-        category="Энгэр"
-        setSelectedIndex={setSelectedIndex}
-        selectedIndex={selectedIndex}
-        onSelect={handleSelection}
-      />
-    ),
-    Монограм: () => (
-      <DetailCardGroup
-        category="Монограм"
-        setSelectedIndex={setSelectedIndex}
-        selectedIndex={selectedIndex}
-        onSelect={handleSelection}
-      />
-    ),
   };
 
   const CategoryComponent =
@@ -249,31 +250,20 @@ export const JacketPanel: React.FC<JacketPanelProps> = ({
 
   return (
     <div className="flex flex-col h-full z-50">
-      {['Доторлогоо', 'Товч', 'Энгэр'].includes(activeCategory || '') ? (
-        <VariationToggleButtons
-          category={activeCategory}
+      <AnimatePresence>
+        <FabricsHeader
+          activeCategory={activeCategory}
+          scrollContainerRef={scrollContainerRef}
+          onHeaderVisibilityChange={setHeaderHidden}
           handleConfirm={handleConfirm}
         />
-      ) : (
-        <AnimatePresence>
-          <FabricsHeader
-            activeCategory={activeCategory}
-            scrollContainerRef={scrollContainerRef}
-            onHeaderVisibilityChange={setHeaderHidden}
-            handleConfirm={handleConfirm}
-          />
-        </AnimatePresence>
-      )}
+      </AnimatePresence>
 
       {/* Scrollable Content */}
       <div
         ref={scrollContainerRef}
         className={`flex-grow overflow-y-auto px-1 lg:px-2 lg:pb-2 transition-transform duration-300 ease-linear ${
-          ['Доторлогоо', 'Товч', 'Энгэр'].includes(activeCategory || '')
-            ? 'pt-2'
-            : headerHidden
-              ? 'pt-0'
-              : 'pt-[44px] md:pt-[55px] lg:pt-[65px]'
+          headerHidden ? 'pt-0' : 'pt-[44px] md:pt-[55px] lg:pt-[65px]'
         }`}
       >
         {CategoryComponent && <CategoryComponent />}
