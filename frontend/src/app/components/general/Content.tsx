@@ -80,7 +80,7 @@ export const Content: React.FC<ContentProps> = ({
   };
 
   return (
-    <div className="relative overflow-x-auto lg:overflow-x-hidden overflow-y-hidden lg:overflow-y-auto flex lg:items-center h-full lg:block">
+    <div className="relative overflow-x-auto lg:overflow-x-hidden flex lg:items-center h-full lg:block">
       <AnimatePresence mode="wait">
         {!activeCategory ? (
           <motion.div

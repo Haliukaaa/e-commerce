@@ -57,7 +57,7 @@ export const BaseStyleCard: React.FC<BaseStyleCardProps> = ({
           <ChevronRight className="stroke-1 text-gray-400" />
         </div>
       </div>
-      <div className="text-lg lg:hidden pt-3 font-semibold text-black group-hover:text-gray-400">
+      <div className="text-sm md:text-center md:pr-7 lg:text-lg lg:hidden pt-3 font-semibold text-black group-hover:text-gray-400">
         Your Style
       </div>
     </div>

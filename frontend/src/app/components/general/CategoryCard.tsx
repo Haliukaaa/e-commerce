@@ -60,7 +60,7 @@ export const CategoryCard: React.FC<CardProps> = ({
         />
       </div>
       <div className="flex-grow px-4 pt-3">
-        <div className="text-lg font-semibold group-hover:text-gray-400 text-gray-800">
+        <div className="text-sm font-light lg:text-lg lg:font-semibold group-hover:text-gray-400 text-gray-800">
           {title}
         </div>
         {selectionToRender && (

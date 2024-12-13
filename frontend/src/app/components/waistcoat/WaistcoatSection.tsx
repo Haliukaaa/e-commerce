@@ -26,28 +26,26 @@ export const WaistcoatSection: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-full">
-      <div>
-        <CategoryButton
-          activeSection={activeSection}
-          setActiveSection={setActiveSection}
-        />
+    <div className="flex flex-col h-full overflow-hidden">
+      <CategoryButton
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
+      />
+      <div className="w-full h-full overflow-hidden">
         {selectedStyle.Waistcoat === true ? (
-          <>
-            <div className="p-2 md:p-4 w-full h-full flex flex-row lg:flex-col gap-3">
+          <div className="lg:overflow-y-auto w-full h-full">
+            <div className="p-2 md:p-4 flex flex-row lg:flex-col gap-3">
               <WaistcoatRemove setSelectedStyle={setSelectedStyle} />
               <Content
                 activeCategory={activeCategory}
                 setActiveCategory={setActiveCategory}
               />
             </div>
-          </>
+          </div>
         ) : (
-          <>
-            <div className="p-2 md:p-4 w-full h-[90%] lg:h-[80dvh] flex items-center flex-row lg:flex-col gap-3 justify-center">
-              <WaistcoatSelection onEdit={() => onEdit()} />
-            </div>
-          </>
+          <div className="p-2 md:p-4 h-full flex items-center flex-row lg:flex-col gap-3 justify-center">
+            <WaistcoatSelection onEdit={() => onEdit()} />
+          </div>
         )}
       </div>
     </div>
