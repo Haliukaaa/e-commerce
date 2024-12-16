@@ -3,7 +3,11 @@ import React, { useMemo } from 'react';
 import { DetailCard } from '.';
 
 import { useFabric } from '@/app/utils/context/fabricContext';
-import { jacket } from '@/app/utils/mockdata/suit-mockdata';
+import {
+  jacket,
+  trousers,
+  waistcoat,
+} from '@/app/utils/mockdata/suit-mockdata';
 import { VariationKey } from '@/app/utils/types/customsuit';
 
 interface CardGroupProps {
@@ -18,12 +22,23 @@ export const DetailCardGroup: React.FC<CardGroupProps> = ({
   selectedIndex,
   onSelect,
 }) => {
-  const { variations } = useFabric();
+  const { variations, activeSection } = useFabric();
 
-  const filteredJackets = useMemo(() => {
-    const jacketItem = jacket.find((j) => j.name === category);
+  const filteredItems = useMemo(() => {
+    const isJacketCategory = jacket.some((j) => j.name === category);
+    const isTrouserCategory = trousers.some((t) => t.name === category);
+    const isWaistcoatCategory = waistcoat.some((k) => k.name === category);
 
-    if (!jacketItem) return [];
+    let item;
+    if (isJacketCategory && activeSection === 'Jacket') {
+      item = jacket.find((j) => j.name === category);
+    } else if (isTrouserCategory && activeSection === 'Trousers') {
+      item = trousers.find((t) => t.name === category);
+    } else if (isWaistcoatCategory && activeSection === 'Waistcoat') {
+      item = waistcoat.find((k) => k.name === category);
+    }
+
+    if (!item) return [];
 
     const variationKey: VariationKey | null =
       category === 'Доторлогоо'
@@ -32,25 +47,23 @@ export const DetailCardGroup: React.FC<CardGroupProps> = ({
           ? 'Товч'
           : category === 'Энгэр'
             ? 'Энгэр'
-            : null;
+            : category === 'Бүсэлхий'
+              ? 'Бүсэлхий'
+              : null;
 
-    if (
-      variationKey &&
-      jacketItem.variations &&
-      !Array.isArray(jacketItem.variations)
-    ) {
+    if (variationKey && item.variations && !Array.isArray(item.variations)) {
       return (
-        jacketItem.variations[
-          variations[variationKey] as keyof typeof jacketItem.variations
+        item.variations[
+          variations[variationKey] as keyof typeof item.variations
         ] || []
       );
     }
 
-    if (Array.isArray(jacketItem.variations)) {
-      return jacketItem.variations;
+    if (Array.isArray(item.variations)) {
+      return item.variations;
     }
 
-    return Object.values(jacketItem.variations).flatMap(
+    return Object.values(item.variations).flatMap(
       (variation) => variation || [],
     );
   }, [category, variations]);
@@ -58,7 +71,7 @@ export const DetailCardGroup: React.FC<CardGroupProps> = ({
   return (
     <div className="relative w-full">
       <div className="flex flex-row gap-1 md:gap-2 lg:gap-3 lg:flex-col">
-        {filteredJackets.map((variation, index) => {
+        {filteredItems.map((variation, index) => {
           if (!category) return null;
           return (
             <DetailCard

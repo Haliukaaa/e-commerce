@@ -4,14 +4,26 @@ import { ChevronRight, Pencil } from 'lucide-react';
 import Image from 'next/image';
 
 interface BaseStyleCardProps {
-  styleName: string | null;
+  styleName: Record<
+    'Jacket' | 'Trousers' | 'Waistcoat',
+    string | null | boolean
+  >;
   onEdit?: () => void;
+  clothing: 'Jacket' | 'Trousers' | 'Waistcoat';
 }
 
 export const BaseStyleCard: React.FC<BaseStyleCardProps> = ({
   styleName,
   onEdit,
+  clothing,
 }) => {
+  const renderStyleName = () => {
+    if (!styleName || !clothing) {
+      return 'Style not selected';
+    }
+    return styleName[clothing] ?? 'Style not selected';
+  };
+
   return (
     <div>
       <div className="flex gap-1 items-center">
@@ -30,9 +42,9 @@ export const BaseStyleCard: React.FC<BaseStyleCardProps> = ({
 
           <div className="flex-grow hidden lg:block">
             <div className="text-lg font-semibold text-black group-hover:text-gray-400">
-              Хүрэмний загвар
+              {clothing === 'Jacket' ? 'Хүрэмний загвар' : 'Өмдний загвар'}
             </div>
-            <div className="text-sm">{styleName}</div>
+            <div className="text-sm">{renderStyleName()}</div>
           </div>
 
           {onEdit && (
@@ -45,7 +57,7 @@ export const BaseStyleCard: React.FC<BaseStyleCardProps> = ({
           <ChevronRight className="stroke-1 text-gray-400" />
         </div>
       </div>
-      <div className="text-lg lg:hidden pt-3 font-semibold text-black group-hover:text-gray-400">
+      <div className="text-sm md:text-center md:pr-7 lg:text-lg lg:hidden pt-3 font-semibold text-black group-hover:text-gray-400">
         Your Style
       </div>
     </div>

@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { JacketPage, JacketSection } from './customjacket';
-import { FabricSection } from './customsuit';
+import { Section, Selection } from './general';
 
 import { useFabric } from '@/app/utils/context/fabricContext';
 
@@ -10,12 +9,23 @@ export const HomePage = () => {
 
   const renderJacketComponent = () => {
     if (activeSection === 'Jacket') {
-      if (!selectedStyle) {
-        return <JacketPage />;
+      if (selectedStyle[activeSection] === null) {
+        return <Selection activeSection={activeSection} />;
       }
-      return <JacketSection />;
+      return <Section activeSection={activeSection} />;
     }
-    return <FabricSection />;
+
+    if (activeSection === 'Trousers') {
+      if (selectedStyle[activeSection] === null) {
+        return <Selection activeSection={activeSection} />;
+      }
+      return <Section activeSection={activeSection} />;
+    }
+    if (activeSection === 'Waistcoat') {
+      return <Section activeSection={activeSection} />;
+    }
+
+    return <Section activeSection={activeSection} />;
   };
 
   return <div>{renderJacketComponent()}</div>;

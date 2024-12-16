@@ -16,7 +16,7 @@ interface FabricContentProps {
 const pageTransition = {
   type: 'tween',
   ease: 'anticipate',
-  duration: 0.4,
+  duration: 0.5,
 };
 
 const mobileVariants = {
@@ -128,7 +128,7 @@ export const FabricContent: React.FC<FabricContentProps> = ({
               dragElastic={0.7}
               dragMomentum={false}
               onDragEnd={isMobile ? handleMobileDragEnd : undefined}
-              transition={{ type: 'tween', duration: 0.4 }}
+              transition={{ type: 'tween', duration: 0.5 }}
               onClick={(e) => e.stopPropagation()}
               className="w-full lg:w-[30%] xl:w-[25%] lg:absolute bottom-0 lg:top-[50px] lg:right-0 z-10"
             >

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ImageSection, MenuSection } from './';
+import { FabricsMenuSection, ImageSection } from './';
 
 export const FabricSection = () => {
   return (
@@ -15,7 +15,7 @@ export const FabricSection = () => {
       {/* Right Section: Menu */}
       <div className="lg:w-[30%] xl:w-[25%] h-[180px] md:h-[244px] bg-white lg:min-h-0 lg:h-full">
         <div className="h-full overflow-hidden">
-          <MenuSection />
+          <FabricsMenuSection />
         </div>
       </div>
     </div>

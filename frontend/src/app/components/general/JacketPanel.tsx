@@ -1,18 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { AnimatePresence } from 'framer-motion';
 import { Check } from 'lucide-react';
 
 import { FabricsHeader } from '../customsuit';
 
-import { DetailCardGroup, VariationToggleButtons } from './';
+import { DetailCardGroup, VariationToggleButtons } from '.';
 
 import { useFabric } from '@/app/utils/context/fabricContext';
 import { jacket } from '@/app/utils/mockdata/suit-mockdata';
 import { SelectedValues } from '@/app/utils/types/customsuit';
 
 interface JacketPanelProps {
-  activeCategory: string;
+  activeCategory: string | null;
   setActiveCategory: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
@@ -25,7 +25,7 @@ export const JacketPanel: React.FC<JacketPanelProps> = ({
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [selectedValues, setSelectedValues] = useState<SelectedValues>({});
 
-  const { jacketSelection, dispatchJacketSelection } = useFabric();
+  const { dispatchJacketSelection } = useFabric();
 
   const handleSelection = (
     category: string | null,
@@ -166,8 +166,6 @@ export const JacketPanel: React.FC<JacketPanelProps> = ({
     Object.keys(selectedValues).forEach((category) => {
       const option = selectedValues[category];
 
-      console.log(`Dispatching for ${category}:`, option);
-
       if (typeof option === 'object') {
         if (category === 'Товч') {
           dispatchJacketSelection({
@@ -195,10 +193,6 @@ export const JacketPanel: React.FC<JacketPanelProps> = ({
     });
     setActiveCategory(null);
   };
-
-  useEffect(() => {
-    console.log(jacketSelection);
-  }, [jacketSelection]);
 
   const categoryComponents = {
     Товчлолт: () => (

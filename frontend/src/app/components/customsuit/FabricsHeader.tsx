@@ -56,7 +56,7 @@ export const FabricsHeader: React.FC<HeaderProps> = ({
       className="w-full bg-white z-20 fixed top-0"
       initial={{ y: 0 }}
       animate={{ y: hidden ? '-100%' : '0%' }}
-      transition={{ type: 'tween', duration: 0.4 }}
+      transition={{ type: 'tween', duration: 0.5 }}
     >
       <div className="flex relative justify-center lg:justify-between pt-2 lg:py-4 px-5">
         <button className="block lg:hidden" onClick={handleConfirm}>
